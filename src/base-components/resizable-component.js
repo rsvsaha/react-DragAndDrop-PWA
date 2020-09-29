@@ -1,16 +1,15 @@
 import React,{useEffect,useState} from 'react';
 import './style.css';
+import { useDispatch } from 'react-redux';
+import { selectionAction } from '../appstate/appStateAndReducer';
 
 
 export const ResizeableComponent = (props) => {
 
-    const [resizeBorderWidth,actResizeBorderWidth] =  useState(props.width);
-    const [resizeBorderHeight,actResizeBorderHeight] = useState(props.height);
-    const [isSelected,setIsSelected] = useState(false);
-    const [isDraggable,setIsDraggable] = useState(false);
-    useEffect(()=>{
-        actResizeBorderWidth(resizeBorderWidth+10);
-    },[]);
+    
+    const [resizeBorderWidth,actResizeBorderWidth] =  useState(props.width+10);
+    const dispatch = useDispatch();
+    
     
     useEffect(()=>{
         actResizeBorderWidth(props.width+10);
@@ -29,7 +28,9 @@ export const ResizeableComponent = (props) => {
         event.stopPropagation();
         stopY = event.pageY;
         if(top) {
+            props.handleYChanges(stopY);
             props.handleHeightChanges(-(stopY - startY));
+            
         }
         else {
             props.handleHeightChanges(stopY - startY);
@@ -49,7 +50,9 @@ export const ResizeableComponent = (props) => {
         console.log("Stop Resizing Width:"+event.pageX);
         stopX = event.pageX;
         if(left) {
+            props.handleXChanges(stopX);
             props.handleWidthChanges(-(stopX - startX));
+            
         }
         else {
             props.handleWidthChanges(stopX - startX);
@@ -57,52 +60,53 @@ export const ResizeableComponent = (props) => {
         
     }
 
-    const clickEvent = (event) =>{
+    const selectionEvent = (event) =>{
         console.log("Selected");
-        event.stopPropagation();
-        setIsDraggable((prevState)=>{
-            return !prevState;
-        });
-        setIsSelected((prevState) => {
-            return !prevState;
-        });
         
+
+
+
+        event.stopPropagation();
+                
+        dispatch(selectionAction(props.id));
     };
+
+    console.log("Child RenderCalled"); 
 
     return (
         <div onDragStart={(event)=>{console.log("DragStarted",event.pageX,event.pageY)}} onDragEnd={(event)=>{
             event.stopPropagation();
-            if(isSelected) {
+            if(props.isSelected) {
                 props.handleXChanges(event.pageX-(props.width/2));
                 props.handleYChanges(event.pageY-(props.height/2));
             
             }
             }} 
-        onClick={(event)=>{clickEvent(event)}} 
+        onClick={(event)=>{selectionEvent(event)}} 
         style={{position:'absolute', top:props.posY+"px", left:props.posX+"px", display:"flex", flexDirection: "column"}}>
         
-            <div draggable={isDraggable} onDragStart={startResizingHeight} 
+            <div draggable={props.isSelected} onDragStart={startResizingHeight} 
             onDragEnd={(event)=>{stopResizingHeight(event,true)}} 
-            style={{visibility: (isSelected) ? 'visible' : 'hidden', height:"5px",width:resizeBorderWidth+"px",cursor:"ns-resize" ,backgroundColor:"yellow"}}></div>
+            style={{visibility: (props.isSelected) ? 'visible' : 'hidden', height:"5px",width:resizeBorderWidth+"px",cursor:"ns-resize" ,backgroundColor:"yellow"}}></div>
             
             <div style={{display:"flex", flexDirection: "row"}}>
-                <div draggable={isDraggable} onDragStart={startResizingWidth} 
+                <div draggable={props.isSelected} onDragStart={startResizingWidth} 
                 onDragEnd={(event)=>{stopResizingWidth(event,true)}}
-                style={{visibility: (isSelected) ? 'visible' : 'hidden', height:props.height+"px",width:"5px",cursor:"ew-resize", backgroundColor:"yellow"}}></div>
+                style={{visibility: (props.isSelected) ? 'visible' : 'hidden', height:props.height+"px",width:"5px",cursor:"ew-resize", backgroundColor:"yellow"}}></div>
                 
                 
                     {props.children}
                 
                 
-                <div draggable={isDraggable} onDragStart={startResizingWidth} 
+                <div draggable={props.isSelected} onDragStart={startResizingWidth} 
                 onDragEnd={(event)=>{stopResizingWidth(event,false)}}
-                style={{visibility: (isSelected) ? 'visible' : 'hidden', height:props.height+"px",width:"5px",cursor:"ew-resize", backgroundColor:"yellow"}}></div>
+                style={{visibility: (props.isSelected) ? 'visible' : 'hidden', height:props.height+"px",width:"5px",cursor:"ew-resize", backgroundColor:"yellow"}}></div>
 
             </div>
             
-            <div draggable={isDraggable} onDragStart={startResizingHeight} 
+            <div draggable={props.isSelected} onDragStart={startResizingHeight} 
             onDragEnd={(event)=>{stopResizingHeight(event,false)}} 
-            style={{visibility: (isSelected) ? 'visible' : 'hidden', height:"5px",width:resizeBorderWidth+"px",cursor:"ns-resize", backgroundColor:"yellow"}}></div>
+            style={{visibility: (props.isSelected) ? 'visible' : 'hidden', height:"5px",width:resizeBorderWidth+"px",cursor:"ns-resize", backgroundColor:"yellow"}}></div>
             
         </div>
     );

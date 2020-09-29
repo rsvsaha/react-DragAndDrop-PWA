@@ -1,40 +1,20 @@
-import React,{useState} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {ButtonComponent} from './components/buttonComponent';
+import React from 'react';
+import {AppStateHOC} from './appstate/appStateHOC';
+import { Designer } from './designer/designer';
+import { Provider } from 'react-redux';
+import {createStore} from 'redux';
+import {rootReducer} from './appstate/rootReducer';
 
-var Z = 0;
+const store = createStore(rootReducer);
 
 function App() {
-  const [elementArray,setElementArray] = useState([]);
-
   
-
-  return (
-
-    <div>
-      <span style={{display:"inline-block", width:"1024px",height:"576px", backgroundColor:"#f0f0f0" }}>
-  
-        {elementArray.map((element)=>{
-          return <ButtonComponent key={element.index}></ButtonComponent>
-        })}
-
-      </span>
-      <span style={{display:"inline-block", width:"100px",height:"576px",backgroundColor:"black"}}>
-        <button onClick={
-            (event) => {
-              setElementArray((prevElements)=> {
-                Z = Z + 1;
-                return [...prevElements,{index:Z}]
-              });
-            }
-        } >ADD BUTTON</button>
-
-      </span>
-      
-    </div>
-
-        
+  const FullComponent = AppStateHOC(Designer)
+  console.log("Render Called");
+  return(
+  <Provider store={store}>
+    <FullComponent></FullComponent>
+  </Provider>
   );
 }
 
