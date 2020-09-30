@@ -5,10 +5,18 @@ export const AppStateHOC = (WrappedComponent) => {
 
     return () => {
         var appStateData = [];
-        var selected = "";
+        var pendingStates = [];
+
+
+        const savePendingStates = (state) => {
+            pendingStates.unshift(state);
+        };
+
+
+
 
         return (
-            <WrappedComponent data={appStateData} selected={selected}></WrappedComponent>
+            <WrappedComponent pendingStates={pendingStates} data={appStateData} saveState={savePendingStates}></WrappedComponent>
         )
     } 
 

@@ -1,38 +1,43 @@
 import React,{useState, useEffect} from 'react';
 import {MoveableComponent} from '../base-components/movable-component';
 import {saveState} from '../appstate/componentInfo';
-
-export const ButtonComponent = (props) => {
-
-    const [width,setWidth] = useState(100);
-    const [height,setHeight] = useState(200);
-    const [X,setX] = useState(100);
-    const [Y,setY] = useState(100);
-
-    
+import { BaseComponent } from '../base-components/base-component';
 
 
-  return (
-    <MoveableComponent setWidth={setWidth} setHeight={setHeight} setX={setX} setY={setY} 
-    height={height} width={width} X={X} Y={Y}
-    isSelected={props.isSelected}
-    id={props.id}
-    type="button"
-    >
-        <button draggable={props.isSelected} style={{ width:width+"px",height:height+"px"}}>{(props.textValue)? props.textValue : "ButtonText"}</button>
-    </MoveableComponent> 
-    
-    
-  );
-}
+export class ButtonComponent extends BaseComponent {
+  id;
+  constructor(id) {
+    super("button")
+    this.id = id;
 
+  }
+  properties = {
+    textValue : {
+      type:"text",
+      value:"Hello Text"
+    },
+    backgroundColor : {
+      type:"text",
+      value:"#fff000",
+    }
+  }
 
-export const ButtonProperties = {
-
-  style : {
-      buttonColor : "#3d7edb",
-      buttonRadius: "10px",
+  setProperty = (propertyName,value) => {
+      this.properties[propertyName].value=value;
   }
 
 
+  getNewClass() {
+    let component = (isSelected,style) => {
+    return <button draggable={isSelected} style={{...style,backgroundColor:this.properties.backgroundColor.value}}>{this.properties.textValue.value}</button>;
+    };
+    return super.render(component);
+
+  }
+
+
+
 }
+        
+    
+    

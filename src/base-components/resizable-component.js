@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import './style.css';
 import { useDispatch } from 'react-redux';
-import { selectionAction } from '../appstate/appStateAndReducer';
+import { selectionAction, dragResizeAction, disselectionAction } from '../appstate/appStateAndReducer';
 
 
 export const ResizeableComponent = (props) => {
@@ -13,9 +13,17 @@ export const ResizeableComponent = (props) => {
     
     useEffect(()=>{
         actResizeBorderWidth(props.width+10);
+        
     },[props.width]);
     var startY,stopY,startX,stopX;
     
+    useEffect(()=>{
+        if(props.isSelected){
+            console.log({X:props.posX,Y:props.posY,width:props.width,height:props.height});
+            dispatch(dragResizeAction({X:props.posX,Y:props.posY,width:props.width,height:props.height}));
+        }
+        
+    });
 
     const startResizingHeight = (event) => {
         event.stopPropagation();
@@ -61,20 +69,14 @@ export const ResizeableComponent = (props) => {
     }
 
     const selectionEvent = (event) =>{
-        console.log("Selected");
-        
-
-
-
         event.stopPropagation();
-                
-        dispatch(selectionAction(props.id));
+        // dispatch(disselectionAction());                
+        dispatch(selectionAction(props.id,{X:props.posX,Y:props.posY,width:props.width,height:props.height}));
     };
 
-    console.log("Child RenderCalled"); 
-
+    console.log("Resizable Component Render",props.posX,props.posY);
     return (
-        <div onDragStart={(event)=>{console.log("DragStarted",event.pageX,event.pageY)}} onDragEnd={(event)=>{
+        <div onDragEnd={(event)=>{
             event.stopPropagation();
             if(props.isSelected) {
                 props.handleXChanges(event.pageX-(props.width/2));

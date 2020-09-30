@@ -1,11 +1,11 @@
 import React,{useState, useEffect} from 'react';
 import { BaseComponent } from '../base-components/base-component';
 
-export class TextComponent extends BaseComponent {
+export class CompositeComponent extends BaseComponent {
   
   id;
   constructor(id) {
-    super("text")
+    super("complex")
     this.id = id;
 
   }
@@ -35,7 +35,10 @@ export class TextComponent extends BaseComponent {
 
   getNewClass() {
     let component = (isSelected,style) => {
-    return <div draggable={isSelected} style={{...style,backgroundColor:this.properties.backgroundColor.value}}>{this.properties.textValue.value}</div>
+    return <div draggable={isSelected} style={{...style,backgroundColor:this.properties.backgroundColor.value}}>
+            <div style={{width:"100%"}}>This is my component</div>
+            <div style={{width:"100%"}}>This is my component</div>
+        </div>
     };
     return super.render(component);
 
