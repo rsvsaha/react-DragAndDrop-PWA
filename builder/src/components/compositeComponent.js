@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React from 'react';
 import { BaseComponent } from '../base-components/base-component';
 
 export class CompositeComponent extends BaseComponent {

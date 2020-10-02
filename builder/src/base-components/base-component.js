@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react';
 import {MoveableComponent} from '../base-components/movable-component';
-import { saveState } from '../appstate/componentInfo';
 
 var production = false;
 

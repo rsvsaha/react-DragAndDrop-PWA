@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { dragResizeAction,disselectionAction } from '../appstate/appStateAndReducer';
 import { v4 } from 'uuid';
@@ -34,8 +34,7 @@ export const PropertiesWidget = (props) => {
         W = stateObject.width;
         H = stateObject.height;
 
-        // const dimensions = { X:X,Y:Y,W:W,H:H}
-
+        
         const inputChangeHandlerX = (event) => {
                 dispatch(dragResizeAction({...stateObject,X:parseFloat(event.target.value)})); 
         }
@@ -90,41 +89,4 @@ export const PropertiesWidget = (props) => {
     
     );
     
-}
-
-
-const DimensionProperties = (props) => {
-        const [X,setX] = useState((props.X)?props.X:0);
-        const [Y,setY] = useState((props.Y)?props.Y:0);
-        const [W,setW] = useState((props.H)?props.H:0);
-        const [H,setH] = useState((props.W)?props.W:0);
- 
-
-        const dimensionGetterSetter = {
-            
-            Setter:{X:setX,
-            Y:setY,
-            W:setW,
-            H:setH},
-            Getter:{
-                X:X,
-                Y:Y,
-                W:W,
-                H:W
-            }
-            
-        }
-        const inputChangeHandler = (event) => {
-            dimensionGetterSetter.Setter[event.target.id](event.target.value);
-            
-        }
-        return (
-            <>
-            <div>X:<input type="text" id="X" value={X} onChange={ inputChangeHandler}></input> </div>
-            <div>Y:<input type="text" id="Y" value={Y} onChange={inputChangeHandler}></input></div>
-            <div>Width:<input type="text" id="W" value={W} onChange={inputChangeHandler}></input></div>
-            <div>Height:<input type="text" id="H"  value={H} onChange={inputChangeHandler}></input></div>
-            <div><button onClick={()=>{console.log("Saved")}}>SAVE</button></div>
-            </>
-        )
 }

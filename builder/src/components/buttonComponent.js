@@ -1,6 +1,4 @@
-import React,{useState, useEffect} from 'react';
-import {MoveableComponent} from '../base-components/movable-component';
-import {saveState} from '../appstate/componentInfo';
+import React from 'react';
 import { BaseComponent } from '../base-components/base-component';
 
 
@@ -29,7 +27,9 @@ export class ButtonComponent extends BaseComponent {
 
   getNewClass() {
     let component = (isSelected,style) => {
-    return <button draggable={isSelected} style={{...style,backgroundColor:this.properties.backgroundColor.value}}>{this.properties.textValue.value}</button>;
+    return <button onClick={(e)=>{
+      console.log(e);
+    }} draggable={isSelected} style={{...style,backgroundColor:this.properties.backgroundColor.value}}>{this.properties.textValue.value}</button>;
     };
     return super.render(component);
 

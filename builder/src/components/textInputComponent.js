@@ -1,6 +1,4 @@
-import React,{useState, useEffect} from 'react';
-import {MoveableComponent} from '../base-components/movable-component';
-import { saveState } from '../appstate/componentInfo';
+import React from 'react';
 import { BaseComponent } from '../base-components/base-component';
 
 export class TextInputComponent extends BaseComponent {

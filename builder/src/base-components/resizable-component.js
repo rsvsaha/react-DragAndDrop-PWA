@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import './style.css';
 import { useDispatch } from 'react-redux';
-import { selectionAction, dragResizeAction, disselectionAction } from '../appstate/appStateAndReducer';
+import { selectionAction, dragResizeAction } from '../appstate/appStateAndReducer';
 
 
 export const ResizeableComponent = (props) => {

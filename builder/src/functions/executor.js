@@ -1,5 +1,5 @@
 
-const functionComponent = require('./functions');
+const functionComponent = require('./functions').functionComponent;
 const config =  require('./config');
 
 var StateMap = new Map();

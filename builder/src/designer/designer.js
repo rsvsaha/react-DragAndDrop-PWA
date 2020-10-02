@@ -1,4 +1,4 @@
-import React, { useEffect,useState,useReducer } from 'react';
+import React, { useState } from 'react';
 import {v4} from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
 import { disselectionAction } from '../appstate/appStateAndReducer';
@@ -45,7 +45,7 @@ export const Designer = (props) => {
           </div>
           <ComponentsWidget data={props.data} triggerRender={triggerRender}></ComponentsWidget>
           <div style={{float:"right"}}>
-            <button onClick={(event)=>{props.history.push("\preview")}}>PREVIEW</button>
+            <button onClick={(event)=>{props.history.push("/preview")}}>PREVIEW</button>
           </div>
           
           <PropertiesWidget saveState={props.saveState} element={props.data.filter((element)=>{

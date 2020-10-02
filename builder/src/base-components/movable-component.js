@@ -36,53 +36,21 @@ const handleWidthChanges = (changeWidth) => {
         return previouseWidth + changeWidth});
   }
 
-const restrictConstraints = () => {
-    if(X < 0) {
-      props.setX(0);    
-      setX(0); 
-         
-    };
 
-    if(Y < 0) {
-      props.setY(0);    
-        setY(0);  
-    };
-
-    if(X+width+5>1024) {
-      props.setX(1024-width-10);    
-      setX(1024-width-10);
-    }
-
-    if(Y+height+5> 576) {
-        props.setY(576-height-10);
-        setY(576-height-10);
-    }
-
-    if(height > 576-10) {
-      props.setHeight(576-10);  
-      setHeight(576-10);
-    }
-    if(width > 1024-10) {
-      props.setWidth(576-10);  
-        
-      setWidth(1024-10);
-    }
-
-}
 
 
 
  useEffect(()=>{
     
-    restrictConstraints();
+    restrictConstraints(X,Y,width,height,setX,setY,setWidth,setHeight,props);
 
- },[X,Y,height,width]);
+ },[X,Y,height,width,props]);
   
 
 
- useEffect(()=>{
-    restrictConstraints();
- },[]);
+//  useEffect(()=>{
+//     restrictConstraints(X,Y,width,height,setX,setY,setWidth,setHeight,props);
+//  },[]);
  console.log("Movable Component Render",width,height);
   return (
     <ResizeableComponent width={width} height={height} posX={X} posY={Y}
@@ -96,4 +64,38 @@ const restrictConstraints = () => {
         {props.children}
     </ResizeableComponent>
   );
+}
+
+const restrictConstraints = (X,Y,width,height,setX,setY,setWidth,setHeight,props) => {
+  if(X < 0) {
+    props.setX(0);    
+    setX(0); 
+       
+  };
+
+  if(Y < 0) {
+    props.setY(0);    
+      setY(0);  
+  };
+
+  if(X+width+5>1024) {
+    props.setX(1024-width-10);    
+    setX(1024-width-10);
+  }
+
+  if(Y+height+5> 576) {
+      props.setY(576-height-10);
+      setY(576-height-10);
+  }
+
+  if(height > 576-10) {
+    props.setHeight(576-10);  
+    setHeight(576-10);
+  }
+  if(width > 1024-10) {
+    props.setWidth(576-10);  
+      
+    setWidth(1024-10);
+  }
+
 }

@@ -64,11 +64,17 @@ const functionComponent = {
 
         }
 
-
-
-
+    },
+    "NetworkBlocks" : {
+        "networkGET" : function(args,stateMap) {
+            require('./networkfunctions').networkGET(args,stateMap)
+        }
+        
 
     }
+
+
+
 }
 
 
@@ -83,4 +89,5 @@ const blocksExecutor = function(arg,stateMap){
         return functionComponent[functionType][functionName](functionArguments, stateMap);
 }
 
-module.exports = functionComponent;
+exports.functionComponent = functionComponent;
+exports.blocksExecutor = blocksExecutor;
