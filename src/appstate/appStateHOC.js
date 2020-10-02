@@ -1,11 +1,16 @@
 import React from 'react';
+var appStateData = [];
+var pendingStates = [];
 
 export const AppStateHOC = (WrappedComponent) => {
 
 
-    return () => {
-        var appStateData = [];
-        var pendingStates = [];
+    return (props) => {
+        
+        const createAppConfig = () => {
+            console.log(appStateData);
+
+        }
 
 
         const savePendingStates = (state) => {
@@ -16,7 +21,7 @@ export const AppStateHOC = (WrappedComponent) => {
 
 
         return (
-            <WrappedComponent pendingStates={pendingStates} data={appStateData} saveState={savePendingStates}></WrappedComponent>
+            <WrappedComponent {...props} createAppConfig={createAppConfig} pendingStates={pendingStates} data={appStateData} saveState={savePendingStates}></WrappedComponent>
         )
     } 
 

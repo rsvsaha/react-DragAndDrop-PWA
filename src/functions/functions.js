@@ -25,6 +25,7 @@ const functionComponent = {
 
         "ifElseBlock" : function (args,stateMap)  { 
             var result = blocksExecutor(args[0],stateMap);
+            // console.log(result);
             if(result ) {
                 blocksExecutor(args[1],stateMap);
               
@@ -74,12 +75,12 @@ const functionComponent = {
 
 
 const blocksExecutor = function(arg,stateMap){
-                var executeCode = arg;
-                var process = Object.keys(executeCode)[0];
-                var processInfo = executeCode[process];
-                var functionType = processInfo.type;
-                var arguments = processInfo.arguments;
-                return functionComponent[functionType][process](arguments, stateMap);
+                var processObject = arg;
+                var processId = processObject.id;
+                var functionName = processObject.functionName;
+                var functionType = processObject.functionType;
+                var functionArguments = processObject.functionArgs;
+        return functionComponent[functionType][functionName](functionArguments, stateMap);
 }
 
 module.exports = functionComponent;

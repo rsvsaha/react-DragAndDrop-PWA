@@ -2,6 +2,11 @@ import React,{useState, useEffect} from 'react';
 import {MoveableComponent} from '../base-components/movable-component';
 import { saveState } from '../appstate/componentInfo';
 
+var production = false;
+
+export const makeProduction = (val) => {
+    production = val;
+}
 
 
 export class  BaseComponent {
@@ -61,6 +66,13 @@ export class  BaseComponent {
 
 
     render (component) {
+        if(production){
+            return (props) => {
+                return (<>{component(false,{position:"absolute", left:this.X,top:this.Y,width:this.width+"px",height:this.height+"px"})}</>)
+            }
+        }
+        
+        
         return (props) => {
             const [width,setWidth] = useState(this.width);
             const [height,setHeight] = useState(this.height);

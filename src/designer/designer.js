@@ -44,6 +44,10 @@ export const Designer = (props) => {
     
           </div>
           <ComponentsWidget data={props.data} triggerRender={triggerRender}></ComponentsWidget>
+          <div style={{float:"right"}}>
+            <button onClick={(event)=>{props.history.push("\preview")}}>PREVIEW</button>
+          </div>
+          
           <PropertiesWidget saveState={props.saveState} element={props.data.filter((element)=>{
               return (element.id === selectedId) ? true : false;
           })[0]}></PropertiesWidget>
