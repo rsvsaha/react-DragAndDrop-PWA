@@ -6,9 +6,11 @@ import { BaseComponent } from '../base-components/base-component';
 
 
 export class ImageComponent extends BaseComponent {
-    id;
+  static classNameUnique= "ImageComponent";
+  
+  id;
     constructor(id) {
-      super("image");
+      super(ImageComponent.classNameUnique);
       this.id = id;
     }
 
@@ -24,7 +26,7 @@ export class ImageComponent extends BaseComponent {
     }
 
     
-  setProperty = (propertyName,value) => {
+  setProperty (propertyName,value) {
     this.properties[propertyName].value=value;
   }
 

@@ -1,0 +1,10 @@
+[
+    {
+        "id": "ad2034a8-80db-4f89-b5fa-30b85a0e26e9",
+        "functionName": "printFunction",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable1"
+        ]
+    }
+]

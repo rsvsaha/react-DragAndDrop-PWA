@@ -1,0 +1,1 @@
+export const AppState = new Map();

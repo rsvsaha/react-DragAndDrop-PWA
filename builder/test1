@@ -17,71 +17,48 @@ app.get("/",function(req,res){
 });
 
 
-app.post("/saveDesign/:designid",(req,res)=>{
+app.post("/save/:objectid",(req,res)=>{
 
-    try {
-        var designid = req.params["designid"]+".json";
-        var fileName = path.join(__dirname,"designs",designid);
-        
+    var fileName = req.params["objectid"]+".json";
     fs.writeFileSync(fileName,JSON.stringify(req.body));
 
     res.send(true);
-    
-    } catch (error) {
-        res.sendStatus(500);        
-    }
-    
+
 
 });
 
 
-app.get("/getDesign/:designid",(req,res)=>{
-    try {
-        var designid = req.params["designid"]+".json";
-        var fileName = path.join(__dirname,"designs",designid);
-        
-        var config = fs.readFileSync(fileName);
+app.get("/get/:objectid",(req,res)=>{
+    var fileName = req.params["objectid"]+".json";
+    var config = fs.readFileSync(fileName);
     res.send(JSON.parse(config));
-    
-    } catch (error) {
-        res.sendStatus(500);
-    }
-    
+
 });
 
 
 
 app.get("/getWorkflow/:workflowName",(req,res)=>{
-    try {
+
     var workflowName = req.params["workflowName"]+".json";
     var fileName = path.join(__dirname,"workFlows",workflowName);
  
     var config = fs.readFileSync(fileName);
 
     res.send(JSON.parse(config));
-    
-    } catch (error) {
-        res.sendStatus(500);
-    }
-    
+
 });
 
 
 app.post("/saveWorkflow/:workflowName",(req,res)=>{
     
-    try {
-        var workflowName = req.params["workflowName"]+".json";
+    var workflowName = req.params["workflowName"]+".json";
     var config = req.body;
     // console.log(config);
     var fileName = path.join(__dirname,"workFlows",workflowName);
     fs.writeFileSync(fileName,JSON.stringify(config));
 
     res.send(true);
-    
-    } catch (error) {
-        res.sendStatus(500);
-    }
-    
+
 });
 
 

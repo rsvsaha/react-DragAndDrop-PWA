@@ -23,7 +23,7 @@ var executor = function (config,StateMap) {
 module.exports = executor
 
 
-executor(config,StateMap);
+// executor(config,StateMap);
 
 // console.log(config);
 

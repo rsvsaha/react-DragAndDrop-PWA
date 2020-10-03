@@ -3,9 +3,11 @@ import { BaseComponent } from '../base-components/base-component';
 
 export class CompositeComponent extends BaseComponent {
   
+  static classNameUnique= "CompositeComponent";
+
   id;
   constructor(id) {
-    super("complex")
+    super(CompositeComponent.classNameUnique)
     this.id = id;
 
   }

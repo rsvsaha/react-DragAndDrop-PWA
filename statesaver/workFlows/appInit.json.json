@@ -1,0 +1,50 @@
+[
+    {
+        "id": "a4110344-b4aa-4857-b6bb-60bdcac6b4fb",
+        "functionName": "createVariable",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable1"
+        ]
+    },
+    {
+        "id": "62757a83-e7c3-4410-a10e-c874549497b7",
+        "functionName": "createVariable",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable2"
+        ]
+    },
+    {
+        "id": "48eefa16-8d4c-41e6-9e7a-4cb2e8d606d0",
+        "functionName": "createVariable",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable3"
+        ]
+    },
+    {
+        "id": "e0bed2b4-f112-40c8-bf8d-1128e9bd01e8",
+        "functionName": "createVariable",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable4"
+        ]
+    },
+    {
+        "id": "4d93c89c-5dcc-444a-b1f1-aa6d3e4e2c6a",
+        "functionName": "createVariable",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable5"
+        ]
+    },
+    {
+        "id": "bf39347f-fd41-4bb1-9994-12d2d28a26d5",
+        "functionName": "createVariable",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable6"
+        ]
+    }
+]

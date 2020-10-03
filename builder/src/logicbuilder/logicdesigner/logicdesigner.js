@@ -7,6 +7,8 @@ var config = [];
 var id = null;
 var ctr = 0;
 var workflow = v4();
+
+var workflowName = null;
     
 export const LogicDesigner = (props) => {
     
@@ -16,6 +18,7 @@ export const LogicDesigner = (props) => {
     useEffect(()=>{
         console.log(config);
     });
+    
     return (<div>
                 <div style={{width:"80%",float:"left"}}>
                     {workflow.map((value)=>{
@@ -86,7 +89,7 @@ export const LogicDesigner = (props) => {
                     
                     </div>
                     <button onClick={(event)=>{
-                        axios.get("http://localhost:8085/getWorkflow/"+workflow,config).then((result)=>{
+                        axios.get("http://localhost:8085/getWorkflow/"+workflowName).then((result)=>{
                             console.log(result.data);
                             executor(result.data,new Map());
                         });
@@ -142,8 +145,8 @@ export const LogicDesigner = (props) => {
                     
 
                     <button onClick={(event)=>{
-                        
-                        axios.post("http://localhost:8085/saveWorkflow/"+workflow,config).then((result)=>{
+                        workflowName = v4();
+                        axios.post("http://localhost:8085/saveWorkflow/"+workflowName,config).then((result)=>{
                             console.log(result);
                         });
 

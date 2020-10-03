@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { disselectionAction } from '../appstate/appStateAndReducer';
 import { PropertiesWidget } from './propertieswidget';
 import { ComponentsWidget } from './componentswidget';
+import axios from 'axios';
 
 export const Designer = (props) => {
     const [renderString,triggerRender] = useState(v4());
@@ -45,7 +46,19 @@ export const Designer = (props) => {
           </div>
           <ComponentsWidget data={props.data} triggerRender={triggerRender}></ComponentsWidget>
           <div style={{float:"right"}}>
-            <button onClick={(event)=>{props.history.push("/preview")}}>PREVIEW</button>
+            <button onClick={(event)=>{
+              
+              
+                  let id = v4();
+                  axios.post("http://localhost:8085/saveDesign/"+id,props.data).then((response)=>{
+                    
+                  console.log(response.data);
+                  props.history.push("/preview/"+id);  
+                }).catch((err)=>{console.log(err);})                
+                  
+
+              
+              }}>PREVIEW</button>
           </div>
           
           <PropertiesWidget saveState={props.saveState} element={props.data.filter((element)=>{
@@ -59,3 +72,15 @@ export const Designer = (props) => {
 }
 
 
+const blobToBase64 = (blob) => {
+
+  return new Promise((resolve,reject)=>{
+    var reader = new FileReader();
+    reader.onload = function() {
+                  var dataUrl = reader.result;
+                  var base64 = dataUrl.split(',')[1];
+                  resolve(base64);
+    };
+    reader.readAsDataURL(blob);
+  })
+}

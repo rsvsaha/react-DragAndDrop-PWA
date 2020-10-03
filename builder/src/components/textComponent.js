@@ -2,10 +2,10 @@ import React from 'react';
 import { BaseComponent } from '../base-components/base-component';
 
 export class TextComponent extends BaseComponent {
-  
+  static classNameUnique = "TextComponent";
   id;
   constructor(id) {
-    super("text")
+    super(TextComponent.classNameUnique);
     this.id = id;
 
   }

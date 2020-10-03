@@ -55,7 +55,21 @@ export class  BaseComponent {
     getProperties() {
         return this.properties;
     }
+
+    events = {}
     
+    setEventWorkflowName = (eventName,workFlowName) => {
+        this.events[eventName].workFlowName = workFlowName;
+    }
+
+
+
+    inputVariable = {}
+    
+    setInputVariable = (fieldName,value) => {
+    this.inputVariable[fieldName].value = value;
+    }
+
     getDetails () {
         return {X:this.X,Y:this.Y,Width:this.width,Height:this.height,Type:this.type};
     }

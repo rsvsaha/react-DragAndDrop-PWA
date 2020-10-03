@@ -17,7 +17,13 @@ export const PropertiesWidget = (props) => {
     var elementPropertyStates =[];
     var elementPropFields;
     var X, Y , W, H;
-    
+    var elementEventKeys = [];
+    var elementEventWorkflowValues = [];
+    var elementEventWorkflowStates = [];
+
+    var elementInputVariableKeys = [];
+    var elementInputVariableValues = [];
+    var elementInputVariableStates = [];
     
     
 
@@ -27,6 +33,13 @@ export const PropertiesWidget = (props) => {
         
         elementPropertyKeys = Object.keys(props.element.properties);
         elementPropertyValues = Object.values(props.element.properties);
+
+        elementEventKeys= Object.keys(props.element.events);
+        elementEventWorkflowValues = Object.values(props.element.events);
+
+        elementInputVariableKeys = Object.keys(props.element.inputVariable);
+        elementInputVariableValues = Object.values(props.element.inputVariable);
+
 
 
         X = stateObject.X;
@@ -59,7 +72,7 @@ export const PropertiesWidget = (props) => {
        
     }
     
-    const createFields = () => {
+    const createPropertyFields = () => {
         return elementPropertyKeys.map((value,index)=>{
             var val = elementPropertyValues[index].value;
             elementPropertyStates.push(val);
@@ -67,6 +80,26 @@ export const PropertiesWidget = (props) => {
                 onChange={(event)=>{props.element.setProperty(value,event.target.value);}}
             ></input> </div>
         })
+    }
+
+    const createEventFields = () => {
+        return elementEventKeys.map((value,index)=>{
+            var val = elementEventWorkflowValues[index].workFlowName;
+            elementEventWorkflowStates.push(val);
+            return <div key={v4()}>{value}:<input type="text" defaultValue={val} 
+                onChange={(event)=>{props.element.setEventWorkflowName(value,event.target.value);}}
+            ></input> </div>
+        });
+    }
+
+    const createInputVariableFields = () => {
+        return elementInputVariableKeys.map((value,index)=>{
+            var val = elementInputVariableValues[index].value;
+            elementInputVariableStates.push(val);
+            return <div key={v4()}>{value}:<input type="text" defaultValue={val} 
+                onChange={(event)=>{props.element.setInputVariable(value,event.target.value);}}
+            ></input> </div>
+        });
     }
     
     
@@ -80,7 +113,13 @@ export const PropertiesWidget = (props) => {
                     (selectedId !== null) ? elementPropFields : null
                 }
                 {
-                    (selectedId !== null) ? createFields() : null
+                    (selectedId !== null) ? createPropertyFields() : null
+                }
+                {
+                    (selectedId !== null) ? createEventFields() : null
+                }
+                {
+                    (selectedId !== null) ? createInputVariableFields() : null
                 }
                 <div><button onClick={()=>{console.log("Saved",stateObject);props.saveState({id:selectedId,stateObject:stateObject}); dispatch(disselectionAction());}}>SAVE</button></div>
             
