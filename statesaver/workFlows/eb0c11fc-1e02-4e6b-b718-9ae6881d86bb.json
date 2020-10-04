@@ -1,0 +1,72 @@
+[
+    {
+        "id": "474ab46d-815d-47b2-9c94-c135ec439cdb",
+        "functionName": "assignFunction",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable13",
+            "variable14"
+        ]
+    },
+    {
+        "id": "4492ad47-a63a-4d44-8a54-e924f802e48b",
+        "functionName": "createVariable",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable1"
+        ]
+    },
+    {
+        "id": "b2aa677b-1b0c-4b67-a40d-1dfd4a31e288",
+        "functionName": "assignFunction",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable2",
+            "variable3"
+        ]
+    },
+    {
+        "id": "c60aa1d3-5207-465b-9afa-365bdb4d9700",
+        "functionName": "greaterThan",
+        "functionType": "LogicalFunctions",
+        "functionArgs": [
+            "variable7",
+            "variable8"
+        ]
+    },
+    {
+        "id": "3d1b853f-2296-43c3-bd60-501476378c8c",
+        "functionName": "assignToVariableFunction",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "variable4",
+            "variable5"
+        ]
+    },
+    {
+        "id": "d0a53bc1-fbd3-42cb-a960-7e69567f9849",
+        "functionName": "lessThanEqual",
+        "functionType": "LogicalFunctions",
+        "functionArgs": [
+            "variable9",
+            "variable10"
+        ]
+    },
+    {
+        "id": "0d7f265c-a8b2-4728-a4b6-d14a3238c962",
+        "functionName": "greaterThan",
+        "functionType": "LogicalFunctions",
+        "functionArgs": [
+            "variable11",
+            "variable12"
+        ]
+    },
+    {
+        "id": "eb5d240d-eb6e-41df-a89e-0c7b920bd469",
+        "functionName": "executionBlock",
+        "functionType": "LogicBlocks",
+        "functionArgs": [
+            "variable6"
+        ]
+    }
+]

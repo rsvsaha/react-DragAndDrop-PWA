@@ -14,7 +14,8 @@ export const ComponentsWidget = (props) => {
             <div>
               <button onClick={
                 (event) => {
-                    props.data.push(new ButtonComponent(v4()));
+                  props.addState(new ButtonComponent(v4()));  
+                  // props.data.push(new ButtonComponent(v4()));
                     props.triggerRender(v4());
                 }
                 }>ADD BUTTON</button>
@@ -22,7 +23,7 @@ export const ComponentsWidget = (props) => {
             <div>
               <button onClick={
                           (event) => {
-                            props.data.push(new TextComponent(v4()));
+                            props.addState(new TextComponent(v4()));
                             props.triggerRender(v4());
                             }
                       } >ADD TEXT</button>
@@ -30,7 +31,7 @@ export const ComponentsWidget = (props) => {
             <div>
               <button onClick={
                           (event) => {
-                            props.data.push(new TextInputComponent(v4()));
+                            props.addState(new TextInputComponent(v4()));
                             props.triggerRender(v4());
                             }
                       } >ADD TEXTINPUT</button>
@@ -38,7 +39,7 @@ export const ComponentsWidget = (props) => {
             <div>
               <button onClick={
                           (event) => {
-                            props.data.push(new ImageComponent(v4()));
+                            props.addState(new ImageComponent(v4()));
                             props.triggerRender(v4());
                             }
                       } >ADD IMAGE</button>
@@ -46,7 +47,7 @@ export const ComponentsWidget = (props) => {
             <div>
             <button onClick={
                           (event) => {
-                            props.data.push(new CompositeComponent(v4()));
+                            props.addState(new CompositeComponent(v4()));
                             props.triggerRender(v4());
                             }
                       } >ADD COMPLEX</button>

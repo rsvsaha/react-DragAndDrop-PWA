@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {v4} from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
 import { disselectionAction } from '../appstate/appStateAndReducer';
@@ -10,11 +10,20 @@ export const Designer = (props) => {
     const [renderString,triggerRender] = useState(v4());
     const selectedId = useSelector(state => state.appStateReducer.selectedId)
     const dispatch = useDispatch();
+
+    useEffect(()=>{
+      triggerRender(v4());
+    },[props.data]);
     
     console.log(selectedId);
+
+    
     
     const pendingState = props.pendingStates.pop();
+    console.log(pendingState);
+    
     const elementArray = props.data.map((element)=>{
+      console.log(element);
       if(pendingState !==undefined && pendingState.id === element.id) {
         console.log(pendingState);
         element.setDimensions(pendingState.stateObject.X,pendingState.stateObject.Y,pendingState.stateObject.width,pendingState.stateObject.height);
@@ -32,7 +41,7 @@ export const Designer = (props) => {
     
     });
 
-
+    console.log("Starting");
 
 
     return (
@@ -44,7 +53,7 @@ export const Designer = (props) => {
             {elementArray}
     
           </div>
-          <ComponentsWidget data={props.data} triggerRender={triggerRender}></ComponentsWidget>
+          <ComponentsWidget {...props} data={props.data} triggerRender={triggerRender}></ComponentsWidget>
           <div style={{float:"right"}}>
             <button onClick={(event)=>{
               
@@ -70,8 +79,11 @@ export const Designer = (props) => {
           
           }}>LOGIC</button>
           </div>
+
+
+
           
-          <PropertiesWidget saveState={props.saveState} element={props.data.filter((element)=>{
+          <PropertiesWidget deleteState={props.deleteState} triggerRender={triggerRender} saveState={props.saveState} element={props.data.filter((element)=>{
               return (element.id === selectedId) ? true : false;
           })[0]}></PropertiesWidget>
           

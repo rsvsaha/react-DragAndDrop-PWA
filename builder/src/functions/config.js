@@ -42,12 +42,19 @@ var config = [
     {   id:"id7",
         functionName:"ifElseBlock",
         functionType:"LogicBlocks",
-        functionArgs:[{
-            id:"id1",
-            functionName:"greaterThan",
-            functionType:"LogicalFunctions",
-            functionArgs:["variable1", "variable2"]
-        }, {
+        functionArgs:[
+            {
+                id:"id2",
+                functionName:"executionBlock",
+                functionType:"LogicBlocks",
+                functionArgs:[{
+                    id:"id1",
+                    functionName:"greaterThan",
+                    functionType:"LogicalFunctions",
+                    functionArgs:["variable1", "variable2"]
+                }]
+            }, 
+            , {
             id:"id2",
             functionName:"executionBlock",
             functionType:"LogicBlocks",

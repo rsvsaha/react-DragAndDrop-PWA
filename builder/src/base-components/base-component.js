@@ -16,6 +16,7 @@ export class  BaseComponent {
     width;
     height;
     type="";
+    production = false;
     constructor(type) {
         this.type = type;
         this.width = 100;
@@ -23,6 +24,10 @@ export class  BaseComponent {
         this.X = 100;
         this.Y = 100;
     
+    }
+
+    setProduction = (val) => {
+        this.setProduction = val;
     }
 
     setX = (X) => {
@@ -79,7 +84,7 @@ export class  BaseComponent {
 
 
     render (component) {
-        if(production){
+        if(this.production){
             return (props) => {
                 return (<>{component(false,{position:"absolute", left:this.X,top:this.Y,width:this.width+"px",height:this.height+"px"})}</>)
             }

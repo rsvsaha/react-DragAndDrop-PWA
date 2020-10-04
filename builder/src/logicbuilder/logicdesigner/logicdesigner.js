@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { v4 } from 'uuid';
 import axios from 'axios';
 import { logicDictionary } from '../logicDictionary';
+import { LogicPropertyEditor } from './logicPropertyEditor';
 
 
-var config = [];
+export var config = [];
 var ctr = 0;
 // var workflow = v4();
 
@@ -17,6 +18,7 @@ export const LogicDesigner = (props) => {
     
     const [selectedId,setSelectedId] = useState(null);
 
+    
     useEffect(()=>{
         console.log(config);
     });
@@ -26,31 +28,93 @@ export const LogicDesigner = (props) => {
                         let args = [];
                         for(let i=0;i<noOfArgs;i++){
                             if(logicDictionary[functionType][functionName][i].type === "execution"){
-                                args.push("");
+                                axios.get("http://localhost:8085/workFlows/appInit.json").then((result)=>{
+                                    args.push(
+                                        {
+                                            id:"v4()",
+                                            functionName:"executionBlock",
+                                            functionType:"LogicBlocks",
+                                            functionArgs:result.data
+                                        
+                                        
+                                        });
+                                }).catch((err)=>{
+                                    args.push([{
+                                        id:"v4()",
+                                        functionName:"executionBlock",
+                                        functionType:"LogicBlocks",
+                                        functionArgs:[]
+                                
+                                    }])
+                                })
+                                
                             }else{
                                 args.push(variableNameGenerator());
-                            }
-                            
+                            }   
+                        }
+                        let processId =v4();
+                        let processObject = {
+                            id:processId,
+                            functionName:functionName,
+                            functionType:functionType,
+                            functionArgs:args
+                        }
+                        if(functionName === "executionBlock"){
+                            console.log(processObject);
                         }
 
-                        let processId =v4();
-                        config.push(
-                            {
-                                id:processId,
-                                functionName:functionName,
-                                functionType:functionType,
-                                functionArgs:args
-                            });
-                        modifyWorkflow(prevState => {
-                            return [...prevState,{functionName:functionName,
-                                functionType:functionType,id:processId}];
-                        });
+                        ;
+                        // If a step is selected add the new step below it else add the new step to the last
+                        if(selectedId !== null){
+                            let toInsertIndex = null;
+                            for(let i=0;i<config.length;i++){
+                                if(config[i].id === selectedId){
+                                    toInsertIndex = i;
+                                    break;
+                                }
+                            }
+                            if(toInsertIndex !== null) {
+                                config.splice(toInsertIndex,0,processObject);
+
+                            }
+                            else{
+                                config.push(processObject);
+                        
+                            }
+                        }else {
+                            config.push(processObject);
+                        
+                        }
+
+                        modifyWorkflow(
+                            config.map((value)=>{
+                                return {id:value.id,functionName:value.functionName,functionType:value.functionType};
+                            }));
+    }
+
+    const removeFromWorkFlow = (id) => {
+                let toDeleteIndex = null;
+                for(let i=0;i<config.length;i++){
+                    if(config[i].id === id){
+                        toDeleteIndex = i;
+                        break;
+                    }
+                }
+
+                if(toDeleteIndex !== null){
+                    config.splice(toDeleteIndex,1);
+                }
+                modifyWorkflow(
+                    config.map((value)=>{
+                        return {id:value.id,functionName:value.functionName,functionType:value.functionType};
+                }));
+                setSelectedId(null);
     }
     
-    const logicObject = config.filter((value)=>{ return (value.id === selectedId) ? true : false;})[0]
+    const logicObject = config.filter((value)=>{ return (value.id === selectedId) ? true : false;})[0];
 
 
-
+    
     return (<div>
                 <div onClick={(ev)=>{setSelectedId(null);}} style={{width:"80%",float:"left",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
                      {workflow.map((value)=>{
@@ -105,12 +169,19 @@ export const LogicDesigner = (props) => {
 
 
                     }}>Save workflow</button>
+                    <button onClick={(event)=>{
+                        axios.get("http://localhost:8085/workFlows/"+workflowName+".json",config).then((result)=>{
+                            console.log(result.data);
+                        });
+
+
+                    }}>Execute WorkFlow</button>
                     </div>
                     <div>
                         {
                             (selectedId !== null) ?  (<div style={{borderStyle:"dashed"}}>
                                     {
-                                        <LogicPropertyEditor {...logicObject} ></LogicPropertyEditor>
+                                        <LogicPropertyEditor removeFromWorkFlow={removeFromWorkFlow} {...logicObject} ></LogicPropertyEditor>
                                     }
 
                             </div>)
@@ -127,63 +198,13 @@ export const LogicDesigner = (props) => {
                     
                 </div>
                 
-);
+
+
+                );
     
 };
 
 
-const LogicPropertyEditor = (props) => {
-
-    const id = props.id;
-    const functionType = props.functionType;
-    const functionName = props.functionName;
-    const args = props.functionArgs;
-
-    var changeArgs = [...args];
-
-    console.log("Rendering");
-
-    console.log(props);
-    return(
-
-        <div>
-            { args.map((value,index)=> { 
-                return (                
-                    <div key={index} >
-
-                        <label>{logicDictionary[functionType][functionName][index].fieldName}</label>
-                        <input type="text" defaultValue={args[index]} 
-                        onChange={(ev)=>{changeArgs[index] =ev.target.value; }}></input>
-
-                    </div>);})
-
-            }
-            <button onClick={(ev)=>{
-                console.log(props.id);
-                
-                for(let i=0;i<config.length;i++){
-                    if(config[i].id === props.id){
-                        console.log(config[i]);
-                        config[i].functionArgs = changeArgs;
-                        break;
-                    }
-                }
-                console.log(config);
-                    
-            }}>SAVE</button>
-            
-
-        </div>
-
-
-    )
-
-
-
-
-
-
-};
 
 
 

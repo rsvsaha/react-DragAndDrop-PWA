@@ -15,7 +15,7 @@ export const logicDictionary = {
 
     "LogicBlocks" : {
 
-        "ifElseBlock" : [{ type: "text", fieldName: "VariableName", hint: "Enter the variable name of the variable to be created" },
+        "ifElseBlock" : [{ type: "execution", fieldName: "condition", hint: "Enter the variable name of the variable to be created" },
         { type: "execution", fieldName: "ifBlock", hint: "Enter the execution workflow name of the if block to be executed" },
         { type: "execution", fieldName: "elseBlock", hint: "Enter the execution workflow name of the else block to be executed" }],
         

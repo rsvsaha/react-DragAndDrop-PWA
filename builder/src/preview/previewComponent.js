@@ -12,7 +12,7 @@ export const PreviewComponent = (props) => {
     // console.log(props);
     const [elementArray,setElementArray] = useState([]);
     const [showBack,setShowBack] = useState(false);
-    makeProduction(true);
+    // makeProduction(true);
     
     useEffect(()=>{
       
@@ -25,7 +25,7 @@ export const PreviewComponent = (props) => {
     
       return () =>{
           console.log("UnMount");
-          makeProduction(false);
+          // makeProduction(false);
         }
     },[]);
     
@@ -86,7 +86,7 @@ const createClass = (classObj) => {
     const X =  XRatio * classObj.X;
     const Y =  YRatio * classObj.Y;
 
-
+    comp.setProduction(true);
     comp.setDimensions(X,Y,width,height);
     comp.events=classObj.events;
     comp.inputVariable=classObj.inputVariable;

@@ -9,6 +9,7 @@ import { LogicDesigner } from './logicbuilder/logicdesigner/logicdesigner';
 import { PreviewComponent } from './preview/previewComponent';
 import { AppState } from './appstate/appState';
 import axios from 'axios';
+import { DragDropLogicDesigner } from './logicbuilder/logicdesigner/dragDropDesigner';
 
 const store = createStore(rootReducer);
 const appState = AppState;
@@ -27,7 +28,7 @@ function App() {
     <BrowserRouter>
     <Switch>    
                 <Route path="/design" component={FullComponent} exact></Route>
-                <Route path="/logic" component={LogicDesigner} exact></Route>
+                <Route path="/logic" component={DragDropLogicDesigner} exact></Route>
                 <Route path="/preview/:id" component={PreviewComponent} exact></Route>
                 <Route path="/" exact>
                   <Redirect to="/design"></Redirect>
@@ -43,7 +44,7 @@ export default App;
 
 function appInitWorkFlow () {
 
-  axios.get("http://localhost:8085/getWorkflow/appInit.json").then((result)=>{
+  axios.get("http://localhost:8085/workFlows/appInit.json").then((result)=>{
         const workFlow = result.data;
         const executor = require('./functions/executor');
         executor(workFlow,appState);

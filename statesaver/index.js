@@ -10,7 +10,9 @@ var path = require('path');
 
 app.use(cors());
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended:false,limit:'50mb'}));
+// app.use(bodyparser.urlencoded({extended:false,limit:'50mb'}));
+app.use("/designs",express.static(path.join(__dirname,"designs")));
+app.use("/workFlows",express.static(path.join(__dirname,"workFlows")));
 
 app.get("/",function(req,res){
     res.send("Running")

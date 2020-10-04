@@ -121,8 +121,8 @@ export const PropertiesWidget = (props) => {
                 {
                     (selectedId !== null) ? createInputVariableFields() : null
                 }
-                <div><button onClick={()=>{console.log("Saved",stateObject);props.saveState({id:selectedId,stateObject:stateObject}); dispatch(disselectionAction());}}>SAVE</button></div>
-            
+                <div><button onClick={()=>{console.log("Saved",stateObject);props.saveState({id:selectedId,stateObject:stateObject}); dispatch(disselectionAction());}}>SAVE</button>
+                <button onClick={()=>{console.log("Deleted",stateObject);props.deleteState(selectedId); dispatch(disselectionAction());}}>DELETE</button></div>
             
         </div>
     
