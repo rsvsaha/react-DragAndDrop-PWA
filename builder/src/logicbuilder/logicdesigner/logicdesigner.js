@@ -1,166 +1,194 @@
 import React, { useState, useEffect } from 'react';
 import { v4 } from 'uuid';
 import axios from 'axios';
+import { logicDictionary } from '../logicDictionary';
 
 
 var config = [];
-var id = null;
 var ctr = 0;
-var workflow = v4();
+// var workflow = v4();
 
-var workflowName = null;
+var workflowName = v4();
+const executor = require('../../functions/executor');
     
 export const LogicDesigner = (props) => {
     
     const [workflow,modifyWorkflow] = useState([]);
-    const executor = require('../../functions/executor');
     
+    const [selectedId,setSelectedId] = useState(null);
+
     useEffect(()=>{
         console.log(config);
     });
-    
-    return (<div>
-                <div style={{width:"80%",float:"left"}}>
-                    {workflow.map((value)=>{
-                        let color = "blue"
-                        if(value.type === "createVariable"){
-                            color = "red"
-                        }else if (value.type === "assignFunction"){
-                            color="yellow"
-                        }else if (value.type === "printFunction"){
-                            color="green"
+
+    const addToWorkFlow = (functionName,functionType) =>{
+                        let noOfArgs = logicDictionary[functionType][functionName].length;
+                        let args = [];
+                        for(let i=0;i<noOfArgs;i++){
+                            if(logicDictionary[functionType][functionName][i].type === "execution"){
+                                args.push("");
+                            }else{
+                                args.push(variableNameGenerator());
+                            }
+                            
                         }
 
-
-                        return <div key={value.id}style={{width:"50px",height:"50px",backgroundColor:color,border:"5px solid transparent"}}></div>
-                    })}
-                </div>
-                <div style={{width:"20%",float:"right"}}>
-                    <button onClick={(event)=>{ 
-                        id = v4();
                         let processId =v4();
                         config.push(
                             {
                                 id:processId,
-                                functionName:"createVariable",
-                                functionType:"BasicFunctions",
-                                functionArgs:[id]
+                                functionName:functionName,
+                                functionType:functionType,
+                                functionArgs:args
                             });
                         modifyWorkflow(prevState => {
-                            return [{type:"createVariable",id:processId},...prevState];
+                            return [...prevState,{functionName:functionName,
+                                functionType:functionType,id:processId}];
                         });
+    }
+    
+    const logicObject = config.filter((value)=>{ return (value.id === selectedId) ? true : false;})[0]
 
-                    }} >CREATE VARIABLE</button>
-                    <button onClick={(event)=>{
-                        let processId =v4();
+
+
+    return (<div>
+                <div onClick={(ev)=>{setSelectedId(null);}} style={{width:"80%",float:"left",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
+                     {workflow.map((value)=>{
+                        let color = "blue"
+                        if(value.functionType === "BasicFunctions"){
+                            color = "red"
+                        }else if (value.functionType === "LogicBlocks"){
+                            color="yellow"
+                        }else if (value.functionType === "LogicalFunctions"){
+                            color="green"
+                        }else if(value.functionType === "LoopBlocks"){
+                            color = "blue"
+                        }else if (value.functionType === "NetworkBlocks") {
+                            color = "#f00f32"
+                        }
                         
-                        config.push({
-                            id:processId,
-                            functionName:"assignFunction",
-                            functionType:"BasicFunctions",
-                            functionArgs:[id, ctr]
-                    
-                        });
-                        modifyWorkflow(prevState => {
-                            return [{type:"assignFunction",id:processId},...prevState];
-                        });
+                    return(<div onClick={(ev)=>{
+                        ev.stopPropagation();
+                        setSelectedId(value.id)}}
+                            key={value.id} style={{maxWidth:"200px",display:"flex",alignItems:"center",
+                            justifyContent:"center",height:"50px",backgroundColor:color,margin:"10px", border:
+                            (value.id === selectedId) ? "5px solid black": "2px dashed black"}}>
+                            {value.functionName}
+                            </div>);
+                    })
+                    } 
+                </div>
+                <div style={{width:"20%",float:"right"}}>
+                    {Object.keys(logicDictionary).map((functionType,index)=>{
 
-                    }} >ASSIGN VARIABLE</button>
-                    <button onClick={(event)=>{
-                        let processId =v4();
-                        config.push({
-                            id:processId,
-                            functionName:"printFunction",
-                            functionType:"BasicFunctions",
-                            functionArgs:[id]
-                        });
-                        modifyWorkflow(prevState => {
-                            return [{type:"printFunction",id:processId},...prevState];
-                        });
+                        return (<div key={index} >
+                                <div>{functionType}</div>
+                                {
+                                    Object.keys(logicDictionary[functionType]).map((functionName,index)=>{
+                                    return <button key={index} onClick={(ev)=>{addToWorkFlow(functionName,functionType)}}>{functionName}</button>;
+                                    })
+                                }
+                        </div>)
 
-                    }} >PRINT VARIABLE</button>
-                    
-                    
+                    })}
                     <div>
-                    <div>
-                    <button onClick={(event)=>{
-                        ctr += 1 ;
-                    }} >INCREMENT VARIABLE</button>
-                    
+                        WorkFlowName:<input type="text" defaultValue={workflowName} onChange={(ev)=>{
+                            workflowName = ev.target.value;
+                        }}></input>
                     </div>
-                    <button onClick={(event)=>{
-                        axios.get("http://localhost:8085/getWorkflow/"+workflowName).then((result)=>{
-                            console.log(result.data);
-                            executor(result.data,new Map());
-                        });
-                        
-                    }}>Execute workflow</button>
+                    <div>
                     
                     <button onClick={(event)=>{
-                        let wF2 = [
-                            {
-                                id:v4(),
-                                functionName:"createVariable",
-                                functionType:"BasicFunctions",
-                                functionArgs:["urlVariable"]
-                            },
-                            {
-                                id:v4(),
-                                functionName:"createVariable",
-                                functionType:"BasicFunctions",
-                                functionArgs:["urlResultVariable"]
-                            },
-                            {
-                                id:v4(),
-                                functionName:"assignFunction",
-                                functionType:"BasicFunctions",
-                                functionArgs:["urlVariable", "http://localhost:8085/"]
-                        
-                            },
-                            {
-                                id:v4(),
-                                functionName:"networkGET",
-                                functionType:"NetworkBlocks",
-                                functionArgs:["urlVariable","urlResultVariable",{
-                                    id:v4(),
-                                    functionName:"executionBlock",
-                                    functionType:"LogicBlocks",
-                                    functionArgs:[{
-                                        id:v4(),
-                                        functionName:"printFunction",
-                                        functionType:"BasicFunctions",
-                                        functionArgs:["urlResultVariable"]
-                                    }]
-                                
-                                }]
-                        
-                            }
-                        ]
-
-                        executor(wF2,new Map());
-
-
-
-                    }}>Execute N/W Request</button>
-                    
-
-                    <button onClick={(event)=>{
-                        workflowName = v4();
                         axios.post("http://localhost:8085/saveWorkflow/"+workflowName,config).then((result)=>{
                             console.log(result);
                         });
 
 
                     }}>Save workflow</button>
+                    </div>
+                    <div>
+                        {
+                            (selectedId !== null) ?  (<div style={{borderStyle:"dashed"}}>
+                                    {
+                                        <LogicPropertyEditor {...logicObject} ></LogicPropertyEditor>
+                                    }
+
+                            </div>)
+                            :null
+                        }
+
                     
                     </div>
 
-                    
-                    
 
+
+                 </div>
+
+                    
                 </div>
                 
-
-    </div>);
+);
     
-}
+};
+
+
+const LogicPropertyEditor = (props) => {
+
+    const id = props.id;
+    const functionType = props.functionType;
+    const functionName = props.functionName;
+    const args = props.functionArgs;
+
+    var changeArgs = [...args];
+
+    console.log("Rendering");
+
+    console.log(props);
+    return(
+
+        <div>
+            { args.map((value,index)=> { 
+                return (                
+                    <div key={index} >
+
+                        <label>{logicDictionary[functionType][functionName][index].fieldName}</label>
+                        <input type="text" defaultValue={args[index]} 
+                        onChange={(ev)=>{changeArgs[index] =ev.target.value; }}></input>
+
+                    </div>);})
+
+            }
+            <button onClick={(ev)=>{
+                console.log(props.id);
+                
+                for(let i=0;i<config.length;i++){
+                    if(config[i].id === props.id){
+                        console.log(config[i]);
+                        config[i].functionArgs = changeArgs;
+                        break;
+                    }
+                }
+                console.log(config);
+                    
+            }}>SAVE</button>
+            
+
+        </div>
+
+
+    )
+
+
+
+
+
+
+};
+
+
+
+
+const variableNameGenerator = () =>{
+    ctr +=1;
+    return "variable"+ctr;
+};

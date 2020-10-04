@@ -11,6 +11,7 @@ import { ImageComponent } from '../components/imageComponent';
 export const PreviewComponent = (props) => {
     // console.log(props);
     const [elementArray,setElementArray] = useState([]);
+    const [showBack,setShowBack] = useState(false);
     makeProduction(true);
     
     useEffect(()=>{
@@ -31,7 +32,6 @@ export const PreviewComponent = (props) => {
 
 
     const elements = elementArray.map((element)=>{
-        console.log(element);
         let DOMElement = element.getNewClass();
         
           
@@ -41,15 +41,18 @@ export const PreviewComponent = (props) => {
       });
       console.log("Preview Rendering");
     return (<>
-    <div>
-    <div style={{position:'absolute',top:"0px",left:"0px", width:"1024px",height:"576px", backgroundColor:"#f0f0f0",
+    <div onKeyPress={(ev)=>{console.log(ev.key);}}>
+    <div style={{position:'absolute',top:"0px",left:"0px", width:"100%",height:"100%", backgroundColor:"#f0f0f0",
     border:"2px solid black" }}>
 
       {elements}
 
     </div>
-    <div style={{position:'absolute',top:"580px",left:"0px", width:"1024px", backgroundColor:"#f0f0f0",
-    border:"2px solid black" }}><button onClick={(ev)=>{props.history.goBack();}}>BACK</button></div>
+
+    {/* <div style={{visibility:"visible",position:'absolute',top:"vh",left:"0px",width:"100%", backgroundColor:"transparent",
+    border:"2px solid black",display:"flex",justifyContent:"center",alignItems:"center"}}>
+        <button onClick={(ev)=>{props.history.goBack();}}>GO BACK</button>
+    </div> */}
     
     </div>
     </>);
@@ -70,7 +73,21 @@ const typeToClass = {
 
 const createClass = (classObj) => {
     var comp = typeToClass[classObj.type]();
-    comp.setDimensions(classObj.X,classObj.Y,classObj.width,classObj.height);
+    
+    const windowHeight =  window.innerHeight;
+    const windowWidth = window.innerWidth;
+    
+    const XRatio = (windowWidth/1024);
+    const YRatio = (windowHeight/576);
+    
+    const width = XRatio *classObj.width;
+    const height = YRatio*classObj.height;
+
+    const X =  XRatio * classObj.X;
+    const Y =  YRatio * classObj.Y;
+
+
+    comp.setDimensions(X,Y,width,height);
     comp.events=classObj.events;
     comp.inputVariable=classObj.inputVariable;
     comp.properties=classObj.properties;

@@ -53,12 +53,22 @@ export const Designer = (props) => {
                   axios.post("http://localhost:8085/saveDesign/"+id,props.data).then((response)=>{
                     
                   console.log(response.data);
-                  props.history.push("/preview/"+id);  
+                  // props.history.push("/preview/"+id);
+                  window.open("http://localhost:3000/preview/"+id,"_blank");
                 }).catch((err)=>{console.log(err);})                
                   
 
               
               }}>PREVIEW</button>
+              <button onClick={(event)=>{
+              
+              
+              window.open("http://localhost:3000/logic","_blank");
+                            
+              
+
+          
+          }}>LOGIC</button>
           </div>
           
           <PropertiesWidget saveState={props.saveState} element={props.data.filter((element)=>{
