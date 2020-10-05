@@ -6,6 +6,7 @@ import { LogicalFunctions } from '../blocks/logicalFunctions';
 import { LogicBlocks } from '../blocks/logicBlocks';
 import axios from 'axios';
 import { LoopBlocks } from '../blocks/loopBlocks';
+import { constants } from '../../constants';
 
 var workFlow=[];
 var workflowName = v4();
@@ -128,7 +129,7 @@ export const DragDropLogicDesigner = (props) => {
             exector(workFlow,new Map());
         }}>EXECUTE</button>
         <button onClick={(ev)=>{
-            axios.post("http://localhost:8085/saveWorkflow/"+workflowName,workFlow).then((result)=>{
+            axios.post(constants.devServer+"/saveWorkflow/"+workflowName,workFlow).then((result)=>{
                             console.log(result);
              });
             // exector(workFlow,new Map());

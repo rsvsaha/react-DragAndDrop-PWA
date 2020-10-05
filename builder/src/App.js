@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppStateHOC} from './appstate/appStateHOC';
+import {AppStateHOC, DesignContainer} from './appstate/appStateHOC';
 import { Designer } from './designer/designer';
 import { Provider } from 'react-redux';
 import {createStore} from 'redux';
@@ -10,6 +10,8 @@ import { PreviewComponent } from './preview/previewComponent';
 import { AppState } from './appstate/appState';
 import axios from 'axios';
 import { DragDropLogicDesigner } from './logicbuilder/logicdesigner/dragDropDesigner';
+import { HomeComponent } from './home/homeComponent';
+import { constants } from './constants';
 
 const store = createStore(rootReducer);
 const appState = AppState;
@@ -20,18 +22,17 @@ appInitWorkFlow();
 
 function App() {
 
-  const FullComponent = AppStateHOC(Designer);
-  const FullPreviewComponent = AppStateHOC(PreviewComponent);
   console.log("Render Called");
   return(
   <Provider store={store}>
     <BrowserRouter>
     <Switch>    
-                <Route path="/design" component={FullComponent} exact></Route>
+                <Route path="/home" component = {HomeComponent} exact></Route>
+                <Route path="/design/:appName" component={DesignContainer} exact></Route>
                 <Route path="/logic" component={DragDropLogicDesigner} exact></Route>
                 <Route path="/preview/:id" component={PreviewComponent} exact></Route>
                 <Route path="/" exact>
-                  <Redirect to="/design"></Redirect>
+                  <Redirect to="/home"></Redirect>
                 </Route>
     </Switch>
     </BrowserRouter>
@@ -44,7 +45,7 @@ export default App;
 
 function appInitWorkFlow () {
 
-  axios.get("http://localhost:8085/workFlows/appInit.json").then((result)=>{
+  axios.get(constants.devServer+"workFlows/appInit.json").then((result)=>{
         const workFlow = result.data;
         const executor = require('./functions/executor');
         executor(workFlow,appState);

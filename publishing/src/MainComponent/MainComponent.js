@@ -1,30 +1,19 @@
 import React, { useState,useEffect } from 'react';
-import {makeProduction} from '../base-components/base-component';
 import axios from 'axios';
-import { CompositeComponent } from '../components/compositeComponent';
-import { TextComponent } from '../components/textComponent';
-import { TextInputComponent } from '../components/textInputComponent';
-import { ButtonComponent } from '../components/buttonComponent';
-import { ImageComponent } from '../components/imageComponent';
-import { MessageComponent } from '../components/messageComponent';
 import { v4 } from 'uuid';
-import { AppState } from '../appstate/appState';
 import { createClassFromConfigurations } from '../utilities/classCreatorUtility';
 import { constants } from '../constants';
 
 
 export var previewTriggerRender = (randomString) => {};
 
-export const PreviewComponent = (props) => {
-    console.log(AppState);
+export const MainComponent = (props) => {
     const [elementArray,setElementArray] = useState([]);
-    const [showBack,setShowBack] = useState(false);
     const [renderString,triggerRender] = useState(v4());
-    // makeProduction(true);
     
     useEffect(()=>{
       
-      axios.get(constants.devServer+"/getDesign/"+props.match.params.id).then((result)=>{  
+      axios.get(constants.devServer+"/designs/App1.json").then((result)=>{  
       console.log(result.data);
       setElementArray(result.data.map((value)=>{
           return createClassFromConfigurations(value);

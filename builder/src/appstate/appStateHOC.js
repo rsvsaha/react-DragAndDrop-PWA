@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import axios from 'axios';
+import { Designer } from '../designer/designer';
+import { createClassFromConfigurations } from '../utilities/classCreatorUtility';
+import { constants } from '../constants';
+
 var appStateData = [];
 var pendingStates = [];
 
-export const AppStateHOC = (WrappedComponent) => {
+export const DesignContainer = (props) => {
 
-    axios.get("http://localhost:8085/designs/1bda2496-6e8a-49ce-8608-c729cc5343a5.json").then((result)=>{
-        console.log(result.data);
-    }).catch((err)=>{
-        console.log(err);
-    });
-
-    return (props) => {
         
+        const [isAppLoaded,setIsAppLoaded] = useState(false);
+        console.log(props);
+        const appName = props.match.params.appName;
+            
+
+        useEffect(()=>{
+            axios.get(constants.devServer+"/apps/"+appName+"/designs/"+appName+".json").then((result)=>{
+                appStateData = result.data.map((value) => {
+                    return createClassFromConfigurations(value,false);
+                }) ;
+                setIsAppLoaded(true);
+            }).catch((err)=>{
+                console.log(err);
+            })
+
+
+        },[])
         
         
         const createAppConfig = () => {
@@ -49,13 +63,21 @@ export const AppStateHOC = (WrappedComponent) => {
 
         console.log("Called");
         return (
-            <WrappedComponent addState={addState} deleteState={deleteState} {...props} createAppConfig={createAppConfig} pendingStates={pendingStates} data={appStateData} saveState={savePendingStates}></WrappedComponent>
-        )
-    } 
-
-
-
-
-
-
+            <>
+            {(isAppLoaded) ? <Designer 
+                    appName={appName}
+                    addState={addState} deleteState={deleteState} {...props} 
+                    createAppConfig={createAppConfig} pendingStates={pendingStates} 
+                    data={appStateData} saveState={savePendingStates}></Designer>:null
+            
+            }
+            </>
+            
+        );
 } 
+
+
+
+
+
+

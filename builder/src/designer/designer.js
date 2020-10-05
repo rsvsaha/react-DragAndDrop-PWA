@@ -5,6 +5,8 @@ import { disselectionAction } from '../appstate/appStateAndReducer';
 import { PropertiesWidget } from './propertieswidget';
 import { ComponentsWidget } from './componentswidget';
 import axios from 'axios';
+import { constants } from '../constants';
+
 const id = v4();
                   
 export const Designer = (props) => {
@@ -59,11 +61,11 @@ export const Designer = (props) => {
             <button onClick={(event)=>{
               
               
-                  axios.post("http://localhost:8085/saveDesign/"+id,props.data).then((response)=>{
+                  axios.post(constants.devServer+"/saveDesign/"+props.appName,props.data).then((response)=>{
                     
                   console.log(response.data);
                   // props.history.push("/preview/"+id);
-                  window.open("http://localhost:3000/preview/"+id,"_blank");
+                  window.open("http://localhost:3000/preview/"+props.appName,"_blank");
                 }).catch((err)=>{console.log(err);})                
                   
 
@@ -81,7 +83,7 @@ export const Designer = (props) => {
           <button onClick={(event)=>{
               
               
-              axios.post("http://localhost:8085/saveDesign/"+id,props.data).then((response)=>{
+              axios.post(constants.devServer+"/saveDesign/"+props.appName,props.data).then((response)=>{
                 
               console.log(response.data);
             }).catch((err)=>{console.log(err);})                

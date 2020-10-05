@@ -13,23 +13,48 @@ app.use(bodyparser.json());
 // app.use(bodyparser.urlencoded({extended:false,limit:'50mb'}));
 app.use("/designs",express.static(path.join(__dirname,"designs")));
 app.use("/workFlows",express.static(path.join(__dirname,"workFlows")));
+app.use("/apps",express.static(path.join(__dirname,"apps")));
 
 app.get("/",function(req,res){
     res.send("Running")
 });
 
+app.get("/open/:appName",(req,res)=>{
 
-app.post("/saveDesign/:designid",(req,res)=>{
+    var appName = req.params["appName"];
+    try {
+        if(!fs.existsSync(path.join(__dirname,"apps",appName))){
+            fs.mkdirSync(path.join(__dirname,"apps",appName));
+            fs.mkdirSync(path.join(__dirname,"apps",appName,"designs"));
+            fs.writeFileSync(path.join(__dirname,"apps",appName,"designs",appName+".json"),JSON.stringify([]));
+            fs.mkdirSync(path.join(__dirname,"apps",appName,"workFlows"));
+            fs.writeFileSync(path.join(__dirname,"apps",appName,"workFlows","appInit.json"),JSON.stringify([]));
+            
+        }
+        res.send(appName);    
+    } catch (error) {
+        res.sendStatus(500);
+    }
+    
+
+
+});
+
+
+
+
+app.post("/saveDesign/:appName",(req,res)=>{
 
     try {
-        var designid = req.params["designid"]+".json";
-        var fileName = path.join(__dirname,"designs",designid);
+        var appName = req.params["appName"];
+        var fileName = path.join(__dirname,"apps",appName,"designs",appName+".json");
         
     fs.writeFileSync(fileName,JSON.stringify(req.body));
 
     res.send(true);
     
     } catch (error) {
+        console.log(error);
         res.sendStatus(500);        
     }
     
@@ -37,15 +62,16 @@ app.post("/saveDesign/:designid",(req,res)=>{
 });
 
 
-app.get("/getDesign/:designid",(req,res)=>{
+app.get("/getDesign/:appName",(req,res)=>{
     try {
-        var designid = req.params["designid"]+".json";
-        var fileName = path.join(__dirname,"designs",designid);
+        var appName = req.params["appName"];
+        var fileName = path.join(__dirname,"apps",appName,"designs",appName+".json");
         
         var config = fs.readFileSync(fileName);
     res.send(JSON.parse(config));
     
     } catch (error) {
+        console.log(error);
         res.sendStatus(500);
     }
     
@@ -63,6 +89,7 @@ app.get("/getWorkflow/:workflowName",(req,res)=>{
     res.send(JSON.parse(config));
     
     } catch (error) {
+        console.log(error);
         res.sendStatus(500);
     }
     
@@ -81,6 +108,8 @@ app.post("/saveWorkflow/:workflowName",(req,res)=>{
     res.send(true);
     
     } catch (error) {
+        console.log(error);
+        
         res.sendStatus(500);
     }
     

@@ -3,6 +3,7 @@ import { v4 } from 'uuid';
 import axios from 'axios';
 import { logicDictionary } from '../logicDictionary';
 import { LogicPropertyEditor } from './logicPropertyEditor';
+import { constants } from '../../constants';
 
 
 export var config = [];
@@ -28,7 +29,7 @@ export const LogicDesigner = (props) => {
                         let args = [];
                         for(let i=0;i<noOfArgs;i++){
                             if(logicDictionary[functionType][functionName][i].type === "execution"){
-                                axios.get("http://localhost:8085/workFlows/appInit.json").then((result)=>{
+                                axios.get(constants.devServer+"/workFlows/appInit.json").then((result)=>{
                                     args.push(
                                         {
                                             id:"v4()",
@@ -163,14 +164,14 @@ export const LogicDesigner = (props) => {
                     <div>
                     
                     <button onClick={(event)=>{
-                        axios.post("http://localhost:8085/saveWorkflow/"+workflowName,config).then((result)=>{
+                        axios.post(constants.devServer+"/saveWorkflow/"+workflowName,config).then((result)=>{
                             console.log(result);
                         });
 
 
                     }}>Save workflow</button>
                     <button onClick={(event)=>{
-                        axios.get("http://localhost:8085/workFlows/"+workflowName+".json",config).then((result)=>{
+                        axios.get(constants.devServer+"/workFlows/"+workflowName+".json",config).then((result)=>{
                             console.log(result.data);
                         });
 

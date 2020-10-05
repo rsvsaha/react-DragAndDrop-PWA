@@ -1,0 +1,27 @@
+[
+    {
+        "id": "16e11c8e-4623-4569-bb43-a133d2030236",
+        "functionName": "createVariable",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "in1"
+        ]
+    },
+    {
+        "id": "b79024c8-9aaf-4ae5-83ed-eb2258de6f42",
+        "functionName": "createVariable",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "msg_1"
+        ]
+    },
+    {
+        "id": "388cd491-02c4-41bb-b49b-fef4db338f88",
+        "functionName": "assignFunction",
+        "functionType": "BasicFunctions",
+        "functionArgs": [
+            "msg_1",
+            "Hello Kitty"
+        ]
+    }
+]

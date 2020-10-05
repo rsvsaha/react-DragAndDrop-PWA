@@ -2,7 +2,7 @@ import React from 'react';
 import { BaseComponent } from '../base-components/base-component';
 import axios from 'axios';
 import { AppState } from '../appstate/appState';
-import { previewTriggerRender } from '../preview/previewComponent';
+import { previewTriggerRender } from '../MainComponent/MainComponent';
 import { v4 } from 'uuid';
 import { constants } from '../constants';
 
@@ -54,7 +54,7 @@ export class ButtonComponent extends BaseComponent {
 
   clickFunction = () => {
     if(this.events.clickEvent.workFlowName !== null) {
-      axios.get(constants.devServer+"/getWorkflow/"+this.events.clickEvent.workFlowName).then((result)=>{
+      axios.get(constants.devServer+"/workFlows/"+this.events.clickEvent.workFlowName+".json").then((result)=>{
         const workFlow = result.data;
         const executor = require('../functions/executor');
         executor(workFlow,AppState);
