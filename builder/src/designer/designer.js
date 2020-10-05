@@ -5,7 +5,8 @@ import { disselectionAction } from '../appstate/appStateAndReducer';
 import { PropertiesWidget } from './propertieswidget';
 import { ComponentsWidget } from './componentswidget';
 import axios from 'axios';
-
+const id = v4();
+                  
 export const Designer = (props) => {
     const [renderString,triggerRender] = useState(v4());
     const selectedId = useSelector(state => state.appStateReducer.selectedId)
@@ -58,7 +59,6 @@ export const Designer = (props) => {
             <button onClick={(event)=>{
               
               
-                  let id = v4();
                   axios.post("http://localhost:8085/saveDesign/"+id,props.data).then((response)=>{
                     
                   console.log(response.data);
@@ -78,6 +78,18 @@ export const Designer = (props) => {
 
           
           }}>LOGIC</button>
+          <button onClick={(event)=>{
+              
+              
+              axios.post("http://localhost:8085/saveDesign/"+id,props.data).then((response)=>{
+                
+              console.log(response.data);
+            }).catch((err)=>{console.log(err);})                
+              
+
+          
+          }}>SAVE</button>
+        
           </div>
 
 

@@ -5,9 +5,10 @@ import { BasicFunctions } from '../blocks/basicFunctions';
 import { LogicalFunctions } from '../blocks/logicalFunctions';
 import { LogicBlocks } from '../blocks/logicBlocks';
 import axios from 'axios';
+import { LoopBlocks } from '../blocks/loopBlocks';
 
 var workFlow=[];
-const workflowName = v4();
+var workflowName = v4();
 export const DragDropLogicDesigner = (props) => {
     
     const [renderString,triggerRender] = useState(v4());
@@ -54,7 +55,14 @@ export const DragDropLogicDesigner = (props) => {
                         triggerRender={triggerRender}
                         removeFromWorkFlow={removeFromWorkFlow}></LogicBlocks>);
                     
-                 }
+                }else if (value.functionType === "LoopBlocks") {
+                    return (<LoopBlocks key={index} index={index} 
+                        workFlow={workFlow} data={value}
+                        triggerRender={triggerRender}
+                        removeFromWorkFlow={removeFromWorkFlow}></LoopBlocks>);
+                }
+
+
                  return <div key={index} style={{width:"95%",minHeight:"50px",marginTop:"2px",border:"1px dashed black"}}>
                      <div style={{width:"100%",height:"100%",backgroundColor:"#f0f0f0"}}
                      onDrop={(ev)=>{
@@ -109,6 +117,12 @@ export const DragDropLogicDesigner = (props) => {
             </div>)
 
         })}
+        <div>
+        <label>WorkFlowName</label>
+        <input type="text" defaultValue={workflowName} onChange={(ev)=>{
+            workflowName = ev.target.value;
+        }}></input>
+        </div>
         <button onClick={(ev)=>{
             const exector = require('../../functions/executor');
             exector(workFlow,new Map());

@@ -5,6 +5,7 @@ import { TextComponent } from '../components/textComponent';
 import { ImageComponent } from '../components/imageComponent';
 import { TextInputComponent } from '../components/textInputComponent';
 import { CompositeComponent } from '../components/compositeComponent';
+import { MessageComponent } from '../components/messageComponent';
 
 export const ComponentsWidget = (props) => {
 
@@ -51,6 +52,14 @@ export const ComponentsWidget = (props) => {
                             props.triggerRender(v4());
                             }
                       } >ADD COMPLEX</button>
+            </div>
+            <div>
+            <button onClick={
+                          (event) => {
+                            props.addState(new MessageComponent(v4()));
+                            props.triggerRender(v4());
+                            }
+                      } >ADD MESSAGE BOX</button>
             </div>
           </div>
           

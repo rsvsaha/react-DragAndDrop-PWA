@@ -6,12 +6,18 @@ import { TextComponent } from '../components/textComponent';
 import { TextInputComponent } from '../components/textInputComponent';
 import { ButtonComponent } from '../components/buttonComponent';
 import { ImageComponent } from '../components/imageComponent';
+import { MessageComponent } from '../components/messageComponent';
+import { v4 } from 'uuid';
+import { AppState } from '../appstate/appState';
+import { createClassFromConfigurations } from '../utilities/classCreatorUtility';
 
+export var previewTriggerRender = (randomString) => {};
 
 export const PreviewComponent = (props) => {
-    // console.log(props);
+    console.log(AppState);
     const [elementArray,setElementArray] = useState([]);
     const [showBack,setShowBack] = useState(false);
+    const [renderString,triggerRender] = useState(v4());
     // makeProduction(true);
     
     useEffect(()=>{
@@ -19,13 +25,15 @@ export const PreviewComponent = (props) => {
       axios.get("http://localhost:8085/getDesign/"+props.match.params.id).then((result)=>{  
       console.log(result.data);
       setElementArray(result.data.map((value)=>{
-          return createClass(value);
+          return createClassFromConfigurations(value);
         })); 
       });
+      previewTriggerRender = triggerRender;
     
       return () =>{
           console.log("UnMount");
           // makeProduction(false);
+          previewTriggerRender = (randomString) => {};
         }
     },[]);
     
@@ -39,9 +47,9 @@ export const PreviewComponent = (props) => {
           key={element.id} isSelected={false} ></DOMElement>
         
       });
-      console.log("Preview Rendering");
+      // console.log("Preview Rendering");
     return (<>
-    <div onKeyPress={(ev)=>{console.log(ev.key);}}>
+    <div>
     <div style={{position:'absolute',top:"0px",left:"0px", width:"100%",height:"100%", backgroundColor:"#f0f0f0",
     border:"2px solid black" }}>
 
@@ -49,10 +57,6 @@ export const PreviewComponent = (props) => {
 
     </div>
 
-    {/* <div style={{visibility:"visible",position:'absolute',top:"vh",left:"0px",width:"100%", backgroundColor:"transparent",
-    border:"2px solid black",display:"flex",justifyContent:"center",alignItems:"center"}}>
-        <button onClick={(ev)=>{props.history.goBack();}}>GO BACK</button>
-    </div> */}
     
     </div>
     </>);
@@ -61,37 +65,3 @@ export const PreviewComponent = (props) => {
 
 
 
-const typeToClass = {
-
-    "ButtonComponent" : () => { return new ButtonComponent();},
-    "CompositeComponent": () => {return new CompositeComponent();},
-    "TextComponent":() => {return new TextComponent();},
-    "TextInputComponent":() => {return new TextInputComponent()},
-    "ImageComponent":()=>{return new ImageComponent();}
-}
-
-
-const createClass = (classObj) => {
-    var comp = typeToClass[classObj.type]();
-    
-    const windowHeight =  window.innerHeight;
-    const windowWidth = window.innerWidth;
-    
-    const XRatio = (windowWidth/1024);
-    const YRatio = (windowHeight/576);
-    
-    const width = XRatio *classObj.width;
-    const height = YRatio*classObj.height;
-
-    const X =  XRatio * classObj.X;
-    const Y =  YRatio * classObj.Y;
-
-    comp.setProduction(true);
-    comp.setDimensions(X,Y,width,height);
-    comp.events=classObj.events;
-    comp.inputVariable=classObj.inputVariable;
-    comp.properties=classObj.properties;
-    comp.id = classObj.id;
-    return comp;
-
-}

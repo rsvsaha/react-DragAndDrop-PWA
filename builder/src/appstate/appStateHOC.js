@@ -1,11 +1,19 @@
 import React from 'react';
+import axios from 'axios';
 var appStateData = [];
 var pendingStates = [];
 
 export const AppStateHOC = (WrappedComponent) => {
 
+    axios.get("http://localhost:8085/designs/1bda2496-6e8a-49ce-8608-c729cc5343a5.json").then((result)=>{
+        console.log(result.data);
+    }).catch((err)=>{
+        console.log(err);
+    });
 
     return (props) => {
+        
+        
         
         const createAppConfig = () => {
             console.log(appStateData);

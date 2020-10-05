@@ -6,8 +6,8 @@ export const logicDictionary = {
         "assignFunction": [{ type: "text", fieldName: "VariableName", hint: "Enter the variable name of the variable to be assigned" },
         { type: "text", fieldName: "VariableValue", hint: "Enter the variable value of the variable to be assigned" }],
         
-        "assignToVariableFunction": [{ type: "text", fieldName: "VariableNameTo", hint: "Enter the variable name of the variable to be assigned" },
-        { type: "text", fieldName: "VariableNameFrom", hint: "Enter the variable name of the variable to be assigned" }],
+        "assignToVariableFunction": [{ type: "text", fieldName: "VariableNameFrom", hint: "Enter the variable name of the variable to be assigned" },
+        { type: "text", fieldName: "VariableNameTo", hint: "Enter the variable name of the variable to be assigned" }],
         
         "printFunction": [{ type: "text", fieldName: "VariableName", hint: "Enter the variable name whose value is to be the variable to be created" }]
 
