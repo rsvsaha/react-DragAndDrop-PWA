@@ -2,6 +2,7 @@ import React from 'react';
 import { BaseComponent } from '../base-components/base-component';
 import { v4 } from 'uuid';
 import { AppState } from '../appstate/appState';
+import {executor} from '../functions/executor';
 
 export class TextInputComponent extends BaseComponent {
   
@@ -39,7 +40,6 @@ export class TextInputComponent extends BaseComponent {
     let component = (isSelected,style) => {
     return <input type="text" draggable={isSelected} style={style} onChange={(ev)=>{
       if(this.inputVariable.fieldVariable.value !== null) {
-        const executor = require('../functions/executor');
         const workFlow = [
           {id:v4(),
           functionName:"assignFunction",

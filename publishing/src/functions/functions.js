@@ -1,4 +1,5 @@
-const functionComponent = {
+import {executor} from './executor';
+export const functionComponent = {
     
     "BasicFunctions" : {
     "createVariable": function(args,stateMap) {
@@ -35,7 +36,6 @@ const functionComponent = {
             } 
         },
         "executionBlock": function(args,stateMap) {
-            const executor = require('./executor');
             executor(args,stateMap);
             
         }
@@ -67,7 +67,7 @@ const functionComponent = {
     },
     "NetworkBlocks" : {
         "networkGET" : function(args,stateMap) {
-            require('./networkfunctions').networkGET(args,stateMap)
+            // require('./networkfunctions').networkGET(args,stateMap)
         }
         
 
@@ -80,7 +80,7 @@ const functionComponent = {
 
 
 
-const blocksExecutor = function(arg,stateMap){
+export const blocksExecutor = function(arg,stateMap){
                 var processObject = arg;
                 var processId = processObject.id;
                 var functionName = processObject.functionName;
@@ -88,6 +88,3 @@ const blocksExecutor = function(arg,stateMap){
                 var functionArguments = processObject.functionArgs;
         return functionComponent[functionType][functionName](functionArguments, stateMap);
 }
-
-exports.functionComponent = functionComponent;
-exports.blocksExecutor = blocksExecutor;

@@ -5,6 +5,7 @@ import { AppState } from '../appstate/appState';
 import { previewTriggerRender } from '../MainComponent/MainComponent';
 import { v4 } from 'uuid';
 import { constants } from '../constants';
+import {executor} from '../functions/executor';
 
 
 export class ButtonComponent extends BaseComponent {
@@ -56,7 +57,6 @@ export class ButtonComponent extends BaseComponent {
     if(this.events.clickEvent.workFlowName !== null) {
       axios.get(constants.devServer+"/workFlows/"+this.events.clickEvent.workFlowName+".json").then((result)=>{
         const workFlow = result.data;
-        const executor = require('../functions/executor');
         executor(workFlow,AppState);
 
         previewTriggerRender(v4());

@@ -1,7 +1,7 @@
-const axios = require('axios');
-const blocksExecutor = require('./functions').blocksExecutor;
+import {blocksExecutor} from './functions';
+import axios from 'axios';
 
-exports.networkGET = function (args,stateMap) {
+export const networkGET = function (args,stateMap) {
     var url = stateMap.get(args[0]);    
     axios.get(url).then((result)=>{
         var data = result.data; 

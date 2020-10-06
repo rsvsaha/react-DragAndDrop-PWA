@@ -4,8 +4,7 @@ import { constants } from '../constants';
 
 export const HomeComponent = (props) => {
 
-    var appName="";
-
+    let appName = "";    
 
 
 
@@ -14,6 +13,7 @@ export const HomeComponent = (props) => {
         <div> <button onClick={(ev)=>{
             Axios.get(constants.devServer+"/open/"+appName).then((result)=>{
                 props.history.push("/design/"+result.data);
+                window.sessionStorage.setItem('app-name',appName);
             }).catch((err)=>{
                 console.log(err);
             })

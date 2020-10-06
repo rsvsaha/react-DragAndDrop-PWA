@@ -3,6 +3,7 @@ import { AppState } from './appstate/appState';
 import axios from 'axios';
 import { constants } from './constants';
 import { MainComponent } from './MainComponent/MainComponent';
+import {executor} from './functions/executor';
 
 const appState = AppState;
 
@@ -25,7 +26,6 @@ function appInitWorkFlow () {
 
   axios.get(constants.devServer+"/workFlows/appInit.json").then((result)=>{
         const workFlow = result.data;
-        const executor = require('./functions/executor');
         executor(workFlow,appState);
       }).catch((err)=>{
         console.log(err);

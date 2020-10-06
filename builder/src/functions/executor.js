@@ -1,10 +1,9 @@
 
-const functionComponent = require('./functions').functionComponent;
-const config =  require('./config');
+import {functionComponent} from './functions';
 
 var StateMap = new Map();
 
-var executor = function (config,StateMap) {
+export const executor = function (config,StateMap) {
     // console.log(config);    
     var processQueue = [...config];
 
@@ -20,7 +19,6 @@ var executor = function (config,StateMap) {
 
 
 }
-module.exports = executor
 
 
 // executor(config,StateMap);

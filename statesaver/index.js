@@ -6,11 +6,14 @@ var fs = require('fs');
 
 var path = require('path');
 
+var serveIndex = require('serve-index');
+
 
 
 app.use(cors());
 app.use(bodyparser.json());
 // app.use(bodyparser.urlencoded({extended:false,limit:'50mb'}));
+app.use('/apps', serveIndex(path.join(__dirname,"apps")));
 app.use("/designs",express.static(path.join(__dirname,"designs")));
 app.use("/workFlows",express.static(path.join(__dirname,"workFlows")));
 app.use("/apps",express.static(path.join(__dirname,"apps")));
@@ -79,13 +82,13 @@ app.get("/getDesign/:appName",(req,res)=>{
 
 
 
-app.get("/getWorkflow/:workflowName",(req,res)=>{
+app.get("/getWorkflow/:appName/:workflowName/",(req,res)=>{
     try {
+    var appName = req.params["appName"];
     var workflowName = req.params["workflowName"]+".json";
-    var fileName = path.join(__dirname,"workFlows",workflowName);
- 
+    var fileName = path.join(__dirname,"apps",appName,"workFlows",workflowName);
     var config = fs.readFileSync(fileName);
-
+    
     res.send(JSON.parse(config));
     
     } catch (error) {
@@ -96,17 +99,18 @@ app.get("/getWorkflow/:workflowName",(req,res)=>{
 });
 
 
-app.post("/saveWorkflow/:workflowName",(req,res)=>{
+app.post("/saveWorkflow/:appName/:workflowName",(req,res)=>{
     
     try {
+        var appName = req.params["appName"];
         var workflowName = req.params["workflowName"]+".json";
-    var config = req.body;
-    // console.log(config);
-    var fileName = path.join(__dirname,"workFlows",workflowName);
-    fs.writeFileSync(fileName,JSON.stringify(config));
+        var fileName = path.join(__dirname,"apps",appName,"workFlows",workflowName);
+        
+        var config = req.body;
+        fs.writeFileSync(fileName,JSON.stringify(config));
 
-    res.send(true);
-    
+        res.send(true);
+        
     } catch (error) {
         console.log(error);
         

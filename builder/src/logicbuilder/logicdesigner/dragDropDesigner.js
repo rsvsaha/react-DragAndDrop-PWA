@@ -7,7 +7,7 @@ import { LogicBlocks } from '../blocks/logicBlocks';
 import axios from 'axios';
 import { LoopBlocks } from '../blocks/loopBlocks';
 import { constants } from '../../constants';
-
+import { executor } from '../../functions/executor';
 var workFlow=[];
 var workflowName = v4();
 export const DragDropLogicDesigner = (props) => {
@@ -125,14 +125,14 @@ export const DragDropLogicDesigner = (props) => {
         }}></input>
         </div>
         <button onClick={(ev)=>{
-            const exector = require('../../functions/executor');
-            exector(workFlow,new Map());
+            executor(workFlow,new Map());
         }}>EXECUTE</button>
         <button onClick={(ev)=>{
-            axios.post(constants.devServer+"/saveWorkflow/"+workflowName,workFlow).then((result)=>{
+            let appName = props.match.params.appName;
+            axios.post(constants.devServer+"/saveWorkflow/"+appName+"/"+workflowName,workFlow).then((result)=>{
                             console.log(result);
              });
-            // exector(workFlow,new Map());
+            
         }}>SAVE WORKFLOW</button>
         </div>
         

@@ -74,7 +74,7 @@ export const Designer = (props) => {
               <button onClick={(event)=>{
               
               
-              window.open("http://localhost:3000/logic","_blank");
+              window.open("http://localhost:3000/logic/"+props.appName,"_blank");
                             
               
 
