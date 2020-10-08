@@ -5,20 +5,21 @@ const staticfiles = [
 '/static/js/2.6bf76b6b.chunk.js',
 '/static/js/2.6bf76b6b.chunk.js.LICENSE.txt',
 '/static/js/2.6bf76b6b.chunk.js.map',
-'/static/js/main.d059d866.chunk.js',
-'/static/js/main.d059d866.chunk.js.map',
+'/static/js/main.3f6a05c6.chunk.js',
+'/static/js/main.3f6a05c6.chunk.js.map',
 '/static/js/runtime-main.14c2b8ee.js',
 '/static/js/runtime-main.14c2b8ee.js.map',
 '/asset-manifest.json',
-'/favicon.ico',
+'/d&dlogo.png',
+'/d&dlogo192.png',
+'/d&dlogo512.png',
+'/d&dlogo64.png',
 '/index.html',
-'/logo192.png',
-'/logo512.png',
 '/manifest.json',
-'/precache-manifest.397284c81346187efe8b621263f50541.js',
+'/precache-manifest.2ff939e9dca51fad974cd6cbe62d7cd4.js',
 '/robots.txt',
 '/service-worker.js',
-'/sw.js'
+'/sw.js',
 ];
 
 const staticResourcescacheName = "static-cache";
