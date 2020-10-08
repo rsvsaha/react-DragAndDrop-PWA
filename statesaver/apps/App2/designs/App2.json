@@ -1,1 +1,0 @@
-[{"type":"ButtonComponent","production":false,"properties":{"textValue":{"type":"text","value":"Hello Text"},"backgroundColor":{"type":"text","value":"#fff000"}},"events":{"clickEvent":{"workFlowName":"wf1"}},"inputVariable":{},"width":100,"height":100,"X":100,"Y":100,"id":"701ccece-8607-4c04-aabd-7b181f672aed"}]

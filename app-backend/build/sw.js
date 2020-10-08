@@ -1,10 +1,33 @@
 const staticfiles = [
 '/',
-STATICFILENAMES
-];
+'/designs/App1.json',
+'/static/css/main.dba01f89.chunk.css',
+'/static/css/main.dba01f89.chunk.css.map',
+'/static/js/2.a6281fe6.chunk.js',
+'/static/js/2.a6281fe6.chunk.js.LICENSE.txt',
+'/static/js/2.a6281fe6.chunk.js.map',
+'/static/js/main.5a57e691.chunk.js',
+'/static/js/main.5a57e691.chunk.js.map',
+'/static/js/runtime-main.14c2b8ee.js',
+'/static/js/runtime-main.14c2b8ee.js.map',
+'/workFlows/appInit.json',
+'/workFlows/wf1.json',
+'/asset-manifest.json',
+'/favicon.ico',
+'/index.html',
+'/logo192.png',
+'/logo512.png',
+'/manifest.json',
+'/precache-manifest.e196f5597f70f53384e420d0c62a11cf.js',
+'/robots.txt',
+'/service-worker.js',
+'/sw.js'
+]
 
-const staticResourcescacheName = "static-cache";
-const dynamicApicacheName = "api-response-cache";
+
+const staticResourcescacheName = "static-cache-v9";
+const dynamicApicacheName = "api-response-cache-v9";
+
 const cachesToKeep = [staticResourcescacheName, dynamicApicacheName];
 
 

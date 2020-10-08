@@ -3,7 +3,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 # print(dir_path)
 parent = os.path.abspath(os.path.join(dir_path, os.pardir))
 
-publishing_project_directory = os.path.join(parent,"publishing","build")
+publishing_project_directory = os.path.join(parent,"app-publish-framework","build")
 file_names = []
 
 

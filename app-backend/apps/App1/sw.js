@@ -1,6 +1,30 @@
+const createdAt = 'Thu, 08 Oct 2020 18:25:30 GMT';
 const staticfiles = [
 '/',
-STATICFILENAMES
+'/static/css/main.5ecd60fb.chunk.css',
+'/static/css/main.5ecd60fb.chunk.css.map',
+'/static/js/2.6bf76b6b.chunk.js',
+'/static/js/2.6bf76b6b.chunk.js.LICENSE.txt',
+'/static/js/2.6bf76b6b.chunk.js.map',
+'/static/js/main.d059d866.chunk.js',
+'/static/js/main.d059d866.chunk.js.map',
+'/static/js/runtime-main.14c2b8ee.js',
+'/static/js/runtime-main.14c2b8ee.js.map',
+'/asset-manifest.json',
+'/favicon.ico',
+'/index.html',
+'/logo192.png',
+'/logo512.png',
+'/manifest.json',
+'/precache-manifest.397284c81346187efe8b621263f50541.js',
+'/robots.txt',
+'/service-worker.js',
+'/sw.js',
+'/designs',
+'/designs/AppDesign.json',
+'/sw.js',
+'/workFlows',
+'/workFlows/appInit.json'
 ];
 
 const staticResourcescacheName = "static-cache";
@@ -39,5 +63,5 @@ self.addEventListener('fetch', function (event) {
             }
         })
     );
-        
+
 })
