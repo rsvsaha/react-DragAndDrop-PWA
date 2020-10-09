@@ -3,9 +3,6 @@ import axios from 'axios';
 import { v4 } from 'uuid';
 import { createClassFromConfigurations } from '../utilities/classCreatorUtility';
 import { constants } from '../constants';
-import { previewTriggerRender } from '../appstate/appState';
-
-var triggerRenderMain = previewTriggerRender;
 
 
 
@@ -21,19 +18,19 @@ export const MainComponent = (props) => {
           return createClassFromConfigurations(value);
         })); 
       });
-      triggerRenderMain = triggerRender;
-    
+      
       return () =>{
           console.log("UnMount");
           // makeProduction(false);
-          triggerRenderMain = (randomString) => {};
         }
     },[]);
     
 
 
     const elements = elementArray.map((element)=>{
-        let DOMElement = element.getNewClass();
+      element.setTriggerRender(triggerRender);  
+      let DOMElement = element.getNewClass();
+        
         
           
           return <DOMElement id={element.id}

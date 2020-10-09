@@ -1,4 +1,4 @@
-const createdAt = CREATEDAT;
+const createdAt = 'Fri, 09 Oct 2020 19:09:28 GMT';
 const staticfiles = [
 '/',
 '/static/css/main.5ecd60fb.chunk.css',
@@ -6,22 +6,25 @@ const staticfiles = [
 '/static/js/2.6bf76b6b.chunk.js',
 '/static/js/2.6bf76b6b.chunk.js.LICENSE.txt',
 '/static/js/2.6bf76b6b.chunk.js.map',
-'/static/js/main.f09f7d51.chunk.js',
-'/static/js/main.f09f7d51.chunk.js.map',
+'/static/js/main.d059d866.chunk.js',
+'/static/js/main.d059d866.chunk.js.map',
 '/static/js/runtime-main.14c2b8ee.js',
 '/static/js/runtime-main.14c2b8ee.js.map',
 '/asset-manifest.json',
-'/d&dlogo.png',
-'/d&dlogo192.png',
-'/d&dlogo512.png',
-'/d&dlogo64.png',
+'/favicon.ico',
 '/index.html',
+'/logo192.png',
+'/logo512.png',
 '/manifest.json',
-'/precache-manifest.fddb4c624dc4a778c66a5b625ed0353c.js',
+'/precache-manifest.397284c81346187efe8b621263f50541.js',
 '/robots.txt',
 '/service-worker.js',
 '/sw.js',
-STATICFILES
+'/designs',
+'/designs/AppDesign.json',
+'/workFlows',
+'/workFlows/appInit.json',
+'/workFlows/wf1.json'
 ];
 
 const staticResourcescacheName = "static-cache";

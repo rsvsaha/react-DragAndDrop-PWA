@@ -1,4 +1,4 @@
-const createdAt = 'Thu, 08 Oct 2020 18:25:30 GMT';
+const createdAt = 'Fri, 09 Oct 2020 19:06:24 GMT';
 const staticfiles = [
 '/',
 '/static/css/main.5ecd60fb.chunk.css',

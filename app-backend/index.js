@@ -8,6 +8,11 @@ var path = require('path');
 
 var serveIndex = require('serve-index');
 var glob =  require('glob');
+var archiver = require('archiver');
+
+var expressfavicon= require('express-favicon');
+
+
 
 var getDirectories =function(src) {
     return new Promise(function(resolve,reject){
@@ -23,6 +28,8 @@ var getDirectories =function(src) {
     });
 }        
 
+
+app.use(expressfavicon(__dirname + "/build/d&dlogo64.png"))
 app.use(cors());
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname,"build")))
@@ -138,21 +145,22 @@ app.get("/getServiceWorker/:appName",(req,res)=>{
         
         var appName = req.params["appName"];
         var filePath =path.join(__dirname,"apps",appName).toString();
+        fs.unlinkSync(path.join(__dirname,"apps",appName,"sw.js"));
+
         getDirectories(filePath).then(function(result){
             let filespath = result.map(function(value){
                 return "\'"+value.split(appName)[1]+"\'";
             });
-            console.log(filespath);
             var swFile = fs.readFileSync(path.join(__dirname,"apps","sw.txt"),'utf8');
             // console.log(swFile);
             swFile = swFile.replace('STATICFILES',filespath.join(",\n")).replace('CREATEDAT',"'"+new Date().toUTCString()+"'");
-            console.log(swFile);
             fs.writeFileSync( path.join(__dirname,"apps",appName,"sw.js"),swFile);
             // swFile = fs.readFileSync(__dirname,"apps",appName,"sw.js");
 
-            res.sendFile(path.join(__dirname,"apps",appName,"sw.js"));
+            res.send(new Date.toString());
         })
         .catch((err)=>{
+            console.log(err);
             res.send(err);
         });
         
@@ -163,6 +171,36 @@ app.get("/getServiceWorker/:appName",(req,res)=>{
     }
 
 
+});
+
+
+app.get("/downloadAppFiles/:appName",(req,res)=>{
+    try {
+        var appName = req.params["appName"];
+        var output = fs.createWriteStream("AppData.zip");
+        var archive = archiver('zip');
+        var dirPath =path.join(__dirname,"apps",appName);
+
+        output.on('close', function () {
+            res.download("AppData.zip");
+            
+        });
+
+    archive.on('error', function(err){
+        res.send(err);
+    });
+
+    archive.pipe(output);
+
+    // append files from a sub-directory and naming it `new-subdir` within the archive (see docs for more options):
+    archive.directory(dirPath, false);
+    archive.finalize();
+    
+    } catch (error) {
+        console.log(error);
+        res.send(error);
+    }
+    
 });
 
 

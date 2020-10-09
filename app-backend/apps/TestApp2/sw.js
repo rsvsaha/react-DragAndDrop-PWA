@@ -1,4 +1,4 @@
-const createdAt = CREATEDAT;
+const createdAt = 'Fri, 09 Oct 2020 20:17:02 GMT';
 const staticfiles = [
 '/',
 '/static/css/main.5ecd60fb.chunk.css',
@@ -21,7 +21,11 @@ const staticfiles = [
 '/robots.txt',
 '/service-worker.js',
 '/sw.js',
-STATICFILES
+'/designs',
+'/designs/AppDesign.json',
+'/workFlows',
+'/workFlows/appInit.json',
+'/workFlows/wf1.json'
 ];
 
 const staticResourcescacheName = "static-cache";

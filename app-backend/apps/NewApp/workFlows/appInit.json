@@ -1,0 +1,1 @@
+[{"id":"20d9cc1b-091e-4dba-9345-5b2371bfc296","functionName":"createVariable","functionType":"BasicFunctions","functionArgs":["variable1"]},{"id":"b5aa57c1-517f-4b7c-a47d-dd3b921b29ef","functionName":"assignFunction","functionType":"BasicFunctions","functionArgs":["variable1","\"Hello\""]}]

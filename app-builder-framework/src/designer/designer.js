@@ -57,7 +57,7 @@ export const Designer = (props) => {
           </div>
           <div style={{position:'absolute',top:"600px",left:"0px", width:"1024px",minHeight:"50px",
           border:"2px solid black",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"row",
-          flex:"3"}}>
+          flex:"5"}}>
               <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"row",
           flex:"1"}}>
               <button onClick={(event)=>{
@@ -93,7 +93,30 @@ export const Designer = (props) => {
                 
 
             
-            }}>SAVE</button>
+            }}>SAVE APP DESIGN</button>
+              </div>
+              <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"row",
+          flex:"1"}}>
+              <button onClick={(event)=>{
+                    window.open(constants.devServer+"/apps/servable-app.zip","_blank");
+                    
+
+                
+                }}>GET APP BASE</button>
+            </div>
+              <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"row",
+          flex:"1"}}>
+              <button onClick={(event)=>{
+                axios.get(constants.devServer+"/getServiceWorker/"+props.appName).then((response)=>{
+                  
+                  window.open(constants.devServer+"/downloadAppFiles/"+props.appName);
+                }).catch((err)=>{console.log(err);})                
+                  
+  
+                
+                
+                              
+            }}>GET YOUR APP CONFIGS</button>
               </div>
             
           </div>

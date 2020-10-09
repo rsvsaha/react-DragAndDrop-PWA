@@ -5,8 +5,8 @@ const staticfiles = [
 '/static/js/2.6bf76b6b.chunk.js',
 '/static/js/2.6bf76b6b.chunk.js.LICENSE.txt',
 '/static/js/2.6bf76b6b.chunk.js.map',
-'/static/js/main.3f6a05c6.chunk.js',
-'/static/js/main.3f6a05c6.chunk.js.map',
+'/static/js/main.f09f7d51.chunk.js',
+'/static/js/main.f09f7d51.chunk.js.map',
 '/static/js/runtime-main.14c2b8ee.js',
 '/static/js/runtime-main.14c2b8ee.js.map',
 '/asset-manifest.json',
@@ -16,10 +16,10 @@ const staticfiles = [
 '/d&dlogo64.png',
 '/index.html',
 '/manifest.json',
-'/precache-manifest.2ff939e9dca51fad974cd6cbe62d7cd4.js',
+'/precache-manifest.fddb4c624dc4a778c66a5b625ed0353c.js',
 '/robots.txt',
 '/service-worker.js',
-'/sw.js',
+'/sw.js'
 ];
 
 const staticResourcescacheName = "static-cache";

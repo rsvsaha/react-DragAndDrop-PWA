@@ -17,7 +17,15 @@ export class  BaseComponent {
         this.Y = 100;
     
     }
+    triggerFunction = (val) => {};
+    triggerRender = (val) => {
+        console.log(val);
+        this.triggerFunction(val);
+    }
 
+    setTriggerRender = (val) => {
+        this.triggerFunction = val;
+    }
     setProduction = (val) => {
         this.production = val;
     }

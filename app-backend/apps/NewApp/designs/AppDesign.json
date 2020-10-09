@@ -1,0 +1,1 @@
+[{"type":"ButtonComponent","production":false,"properties":{"textValue":{"type":"text","value":"Click Me"},"backgroundColor":{"type":"text","value":"#23fcf9"}},"events":{"clickEvent":{"workFlowName":"wf1"}},"inputVariable":{},"width":100,"height":100,"X":596,"Y":176,"id":"1a13e362-639a-4f17-8784-d667d88c2dcc"}]
