@@ -5,9 +5,9 @@ import { AppState } from '../appstate/appState';
 import { createClassFromConfigurations } from '../utilities/classCreatorUtility';
 import { constants } from '../constants';
 import { executor } from '../functions/executor';
+import { BaseComponent } from '../base-components/base-component';
 
 
-export var previewTriggerRender = (randomString) => {};
 
 
 
@@ -26,12 +26,10 @@ export const PreviewComponent = (props) => {
           return createClassFromConfigurations(value);
         })); 
       });
-      previewTriggerRender = triggerRender;
-    
+      
       return () =>{
           console.log("UnMount");
           // makeProduction(false);
-          previewTriggerRender = (randomString) => {};
         }
     },[]);
     
@@ -39,8 +37,7 @@ export const PreviewComponent = (props) => {
 
     const elements = elementArray.map((element)=>{
         let DOMElement = element.getNewClass();
-          console.log(element);
-          
+        element.setTriggerRender(triggerRender);    
           return <DOMElement id={element.id}
           key={element.id} isSelected={false} ></DOMElement>
         

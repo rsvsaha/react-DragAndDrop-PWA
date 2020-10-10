@@ -2,7 +2,6 @@ import React from 'react';
 import { BaseComponent } from '../base-components/base-component';
 import axios from 'axios';
 import { AppState } from '../appstate/appState';
-import { previewTriggerRender } from '../preview/previewComponent';
 import { v4 } from 'uuid';
 import { constants } from '../constants';
 import { executor } from '../functions/executor';
@@ -60,7 +59,7 @@ export class ButtonComponent extends BaseComponent {
         const workFlow = result.data;
         executor(workFlow,AppState);
 
-        previewTriggerRender(v4());
+        this.triggerRender(v4());
       }).catch((err)=>{
         console.log(err);
       });
