@@ -129,3 +129,15 @@ OPEN WORKFLOW | Button | Opens the workFlow of the WorkFlowName. (The WorkFlow m
 # Preview
 The preview page contains the preview of the app but without the service worker. So the app execution would depend on the network speed. [NEEDS TO BE IMPROVED]
 
+# Publishing Steps
+1. After the App designing and logical designing is done. Test it in preview.
+2. Click on *** GET APP BASE *** . It will download a zip file. The zip file contains a folder called servable-app. 
+3. The servable-app is a node.js app which can be hosted easily. It has the following file Structure
+  i. Server.js - An Express JS Server used for serving the app.
+  ii. package.json - For Express JS Server Dependencies
+  iii. .gitignore
+  iv. package-lock.json
+  v. *** build *** folder. This build folder contains a compiled react app. It requires the design, workflow files and the service worker file for it's exection.
+
+
+
