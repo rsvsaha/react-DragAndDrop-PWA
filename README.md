@@ -133,16 +133,32 @@ The preview page contains the preview of the app but without the service worker.
 1. After the App designing and logical designing is done. Test it in preview.
 2. Click on *** GET APP BASE *** . It will download a zip file. The zip file contains a folder called servable-app. 
 3. The servable-app is a node.js app which can be hosted easily. It has the following file Structure
-  
-  i. Server.js - An Express JS Server used for serving the app.
-  
-  ii. package.json - For Express JS Server Dependencies
-  
-  iii. .gitignore
-  
-  iv. package-lock.json
-  
-  v. *** build *** folder. This build folder contains a compiled react app. It requires the design, workflow files and the service worker file for it's exection.
+    - Server.js - An Express JS Server used for serving the app.
+    - package.json - For Express JS Server Dependencies
+    - .gitignore
+    - package-lock.json
+    - *** build *** folder. This build folder contains a compiled react app. It requires the design, workflow files and the service worker file for it's exection.
+4. Click on *** GET YOUR APP CONFIGS *** . It will contain a zip file containing the following file structure.
+  - *** designs *** folder. This contains a file called *** AppDesign.json *** . This file contains the UI elements configuration which is generated during run time.
+  - *** workFlows *** folder. This contains the workFlows in a json format. Thi folder will contain an appInit.json and all the other workflows.
+  - *** sw.js *** file. This file contains the service worker for the app.
+
+5. Copy the folders and files of step4 in the build directory of step 3. The app is ready to be served. You can copy the build directory and serve it using other servers like tomcat,iis,apache etc.
+
+6. If you need to change the icon of the App and the Name of the change the title tag in index.js and change the favicon. For the pwa experience change the name of the app in manifest.json . 
+- short_name : It is the name with which the app would be added to home screen.
+- name: It is the name of the app which would be shown on splash screen.
+- icons: This is the icon of the app that would be shown on the splash screen.
+
+For better understanding of PWA please refer to PWA documentation at
+ - https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps 
+ - https://developers.google.com/web/ilt/pwa
+
+You can find a pre built app by the name of MathEvaluate in the hosted application. The MathEvaluate App is hosted at https://drag-drop-pwa-demo.herokuapp.com/.
+
+This repository would be in active development and I would release updates periodically. If any one wants to collaborate please connect with me.
+
+# Happy Coding
 
 
 
