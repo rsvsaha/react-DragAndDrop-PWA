@@ -110,11 +110,18 @@ There are different programming blocks available which can be dragged and droppe
 - equalTo: Evaluates equal to between two variables.
 
 ### LoopBlocks
--forLoop: Executes a for loop from the start variable to the stop variable. In the loop body, it embeds a series of logical steps which would be executed.
+- forLoop: Executes a for loop from the start variable to the stop variable. In the loop body, it embeds a series of logical steps which would be executed.
 
 ### MathBlocks
--evaluateMath: Takes a math expression in string format from a variable, evaluates the expression and assigns the output to a variable.
+- evaluateMath: Takes a math expression in string format from a variable, evaluates the expression and assigns the output to a variable.
 
+The function of WorkFlow related Buttons and Fields.
+Element | Type | Description
+-------- | ------ | ----------
+WorkFlowName | Text Input | The Name of the workflow which is currently being created or modified.
+EXECUTE | Button | Executes the workFlow.
+SAVE WORKFLOW | Button | Saves the workFlow with the workFlow name as WorkFlowName.json .
+OPEN WORKFLOW | Button | Opens the workFlow of the WorkFlowName. (The WorkFlow must exist else it will throw an error).
 
 
 
