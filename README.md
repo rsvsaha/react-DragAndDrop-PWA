@@ -80,6 +80,30 @@ SAVE APP DESIGN | Saves the UI Layout of the App.
 GET APP BASE | Downloads the basic app bundle in which the App Config needs to be replaced.
 GET YOUR APP CONFIGS | Donwnloads the App Configs which needs to be replaced in the App Base for running the App.
 
+# Logic
+The Logic Designer can be used to create workflows which would be executed during the run time of the app. The Workflows are a sequence of steps which needs to be performed during it's execution. The App Life Cycle consists of 2 types of workflows.
+
+### appInit
+This is the first and the basic workflow which is executed at the beginning of the app run time. All the variables that are used in the app must be declared in this appInit workflow. The appInit workflow is a must for running the application.
+
+### Other Event Workflows
+These are other named workflows which are created for event handling like clicking of a button. These are workflows must be saved with a unique name and the unique name of the workflow must be used in the WorkFlow fields in the designer. Note: The appInit workflow should not be over written by event workflows.
+
+There are different programming blocks available which can be dragged and dropped into the design area and they are executed sequentially during execution.
+## Blocks for Programming
+
+### BasicFunctions
+- createVariable: This is used to declare variables. (Variables cannot be used before declaration)
+- assignFunction: This is used to assign values to a variable.
+- assignToVariableFunction: This is used to assign one variable to another.
+- printFunction: Prints the variable value in the window console. (Can be used for debugging)
+
+
+### LogicBlocks
+### LogicalFunctions
+### LoopBlocks
+### MathBlocks
+
 
 
 
