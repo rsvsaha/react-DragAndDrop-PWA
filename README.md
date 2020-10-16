@@ -20,3 +20,12 @@ X | Number | Number of Pixels from the left of the screen where the element will
 Y | Number | Number of Pixels from the top of the screen where the element will be placed
 Width | Number | Number of Pixels of element Width
 Height | Number | Number of Pixels of element Height
+
+### Button Component
+This is a clickable button element which can perform some logical actions when clicked. It has the following properties apart from positional properties
+
+Property | Input Type | Meaning
+-------- | ---------- | -------
+textValue | String |The Text inside the Button 
+backgroundColor | Hexadecimal Color Code | The color of the Button
+clickEvent | WorkFlow Name | The WorkFlow which will be executed on click event
