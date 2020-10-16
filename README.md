@@ -72,7 +72,7 @@ backgroundColor | Hexadecimal Color Code | The background color of the Message B
 
 Apart from these components there are 5 buttons in the designer page. The purpose of those buttons are described as under.
 
-Button Name| Description
+Button Name| Function
 -------- | -------
 PREVIEW | Opens the App in preview mode. The preview mode works exactly like the App. But it is a bit slower as there is no Service Worker.
 LOGIC | Opens the Logic Designer.
