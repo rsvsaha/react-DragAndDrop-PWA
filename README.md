@@ -26,6 +26,16 @@ This is a clickable button element which can perform some logical actions when c
 
 Property | Input Type | Meaning
 -------- | ---------- | -------
-textValue | String |The Text inside the Button 
-backgroundColor | Hexadecimal Color Code | The color of the Button
-clickEvent | WorkFlow Name | The WorkFlow which will be executed on click event
+textValue | String |The Text inside the Button Component
+backgroundColor | Hexadecimal Color Code | The color of the Button Component
+clickEvent | WorkFlow Name | The WorkFlow which will be executed on click event of the Button Component
+
+### Text Component
+This is a Text message element which can be used as labels or static text areas. It has the following properties apart from positional properties
+
+Property | Input Type | Meaning
+-------- | ---------- | -------
+textValue | String |The Text inside the Text Component 
+backgroundColor | Hexadecimal Color Code | The background color of the Text Component
+
+
