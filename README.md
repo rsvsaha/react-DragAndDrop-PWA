@@ -72,6 +72,13 @@ backgroundColor | Hexadecimal Color Code | The background color of the Message B
 
 Apart from these components there are 5 buttons in the designer page. The purpose of those buttons are described as under.
 
+Button Name| Description
+-------- | -------
+PREVIEW | Opens the App in preview mode. The preview mode works exactly like the App. But it is a bit slower as there is no Service Worker.
+LOGIC | Opens the Logic Designer.
+SAVE APP DESIGN | Saves the UI Layout of the App.
+GET APP BASE | Downloads the basic app bundle in which the App Config needs to be replaced.
+GET YOUR APP CONFIGS | Donwnloads the App Configs which needs to be replaced in the App Base for running the App.
 
 
 
