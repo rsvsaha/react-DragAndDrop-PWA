@@ -14,7 +14,7 @@ Height = (1080/576) x 100 = 187.5 px
 
 All UI elements has 4 Positional Properties which determines the X,Y coordinates and the width and height.
 
-Property | Input Type | Meaning
+Property | Input Type | Description
 -------- | ---------- | -------
 X | Number | Number of Pixels from the left of the screen where the element will be placed
 Y | Number | Number of Pixels from the top of the screen where the element will be placed
@@ -24,7 +24,7 @@ Height | Number | Number of Pixels of element Height
 ### Button Component
 This is a clickable button element which can perform some logical actions when clicked.
 
-Property | Input Type | Meaning
+Property | Input Type | Description
 -------- | ---------- | -------
 textValue | String |The Text inside the Button Component
 backgroundColor | Hexadecimal Color Code | The color of the Button Component
@@ -33,7 +33,7 @@ clickEvent | WorkFlow Name | The WorkFlow which will be executed on click event 
 ### Text Component
 This is a Text message element which can be used as labels or static text areas.
 
-Property | Input Type | Meaning
+Property | Input Type | Description
 -------- | ---------- | -------
 textValue | String |The Text inside the Text Component 
 backgroundColor | Hexadecimal Color Code | The background color of the Text Component
@@ -41,14 +41,14 @@ backgroundColor | Hexadecimal Color Code | The background color of the Text Comp
 ### TextInput Component
 This is a Text input element which can be used as a standard text input.
 
-Property | Input Type | Meaning
+Property | Input Type | Description
 -------- | ---------- | -------
 fieldVariable | Variable Name |The variable in which the TextInput Component will store it's value on change
 
 ### Image Component
 This is a Image element which can be used as static Image.
 
-Property | Input Type | Meaning
+Property | Input Type | Description
 -------- | ---------- | -------
 imgSrcValue | String URL |The URL of the Image Component  
 backgroundColor | Hexadecimal Color Code | The background color of the Image Component
@@ -56,7 +56,7 @@ backgroundColor | Hexadecimal Color Code | The background color of the Image Com
 ### Link Component
 This is a anchor tag element which can be used as hyperlinks.
 
-Property | Input Type | Meaning
+Property | Input Type | Description
 -------- | ---------- | -------
 linkText | String |The Text inside the Link Component 
 backgroundColor | Hexadecimal Color Code | The background color of the Link Component
@@ -65,10 +65,13 @@ linkUrl | String URL | The URL of the Link Component
 ### Message Box Component
 This is a dynamic text output element which can be used as a standard text output or message box.
 
-Property | Input Type | Meaning
+Property | Input Type | Description
 -------- | ---------- | -------
-messageVariable | Variable Name | The variable from which the message box output value will be taken.
+messageVariable | Variable Name | The variable from which the message box output value will be taken
 backgroundColor | Hexadecimal Color Code | The background color of the Message Box Component
+
+Apart from these components there are 5 buttons in the designer page. The purpose of those buttons are described as under.
+
 
 
 
