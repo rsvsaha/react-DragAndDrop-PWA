@@ -51,6 +51,7 @@ app.get("/open/:appName",(req,res)=>{
             fs.writeFileSync(path.join(__dirname,"apps",appName,"designs","AppDesign.json"),JSON.stringify([]));
             fs.mkdirSync(path.join(__dirname,"apps",appName,"workFlows"));
             fs.writeFileSync(path.join(__dirname,"apps",appName,"workFlows","appInit.json"),JSON.stringify([]));
+            fs.writeFileSync(path.join(__dirname,"apps",appName,"sw.js"),"");
             
         }
         res.send(appName);    

@@ -8,7 +8,7 @@ import { MessageComponent } from '../components/messageComponent';
 const typeToClass = {
 
     "ButtonComponent" : () => { return new ButtonComponent();},
-    "CompositeComponent": () => {return new LinkComponent();},
+    "LinkComponent": () => {return new LinkComponent();},
     "TextComponent":() => {return new TextComponent();},
     "TextInputComponent":() => {return new TextInputComponent()},
     "ImageComponent":()=>{return new ImageComponent();},
