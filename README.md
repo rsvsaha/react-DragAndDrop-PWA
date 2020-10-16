@@ -38,4 +38,19 @@ Property | Input Type | Meaning
 textValue | String |The Text inside the Text Component 
 backgroundColor | Hexadecimal Color Code | The background color of the Text Component
 
+### TextInput Component
+This is a Text input element which can be used as a standard text input. It has the following properties apart from positional properties
+
+Property | Input Type | Meaning
+-------- | ---------- | -------
+fieldVariable | Variable Name |The variable in which the TextInput Component will store it's value on change
+
+### Image Component
+This is a Image element which can be used as static Image. It has the following properties apart from positional properties
+
+Property | Input Type | Meaning
+-------- | ---------- | -------
+imgSrcValue | String URL|The URL of the Image Component  
+backgroundColor | Hexadecimal Color Code | The background color of the Image Component
+
 
