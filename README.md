@@ -1,6 +1,9 @@
 # react-DragAndDrop-PWA
 This is a repository for building PWA Apps using Drag and Drop Style Programming. The App is hosted at https://drag-and-drop-pwa-builder.herokuapp.com/. The App can be used for generating designs which can adjust to any screen size by keeping the ratio same and for creating very simple business logics using the logic builder which uses a drag and drop style programming.
 
+# Home
+This page takes the appName as input. If the App with the same name already exists, it opens the app , else it creates a new app. Then it takes us to the Designer Page.
+
 # Designer
 This can be used to generate the UI layout of the App.The Designer Area has a dimension of 1024 px x 576 px. All UI elements are draggable in this area and can be moved and resized by dragging. The UI placement is based on a coordinate system where the top left is (0,0) and bottom right is (1024,576).For any other dimension, the UI elements are placed and resized as per the ratio of the new dimension. For Example an UI element placed at (100,50) and having a width of 200px and height of 100px in the 1024x576 dimension will be resized as follows in a screen of 1920 x 1080 pixel dimension.
 
@@ -123,5 +126,6 @@ EXECUTE | Button | Executes the workFlow.
 SAVE WORKFLOW | Button | Saves the workFlow with the workFlow name as WorkFlowName.json .
 OPEN WORKFLOW | Button | Opens the workFlow of the WorkFlowName. (The WorkFlow must exist else it will throw an error).
 
-
+# Preview
+The preview page contains the preview of the app but without the service worker. So the app execution would depend on the network speed. [NEEDS TO BE IMPROVED]
 
