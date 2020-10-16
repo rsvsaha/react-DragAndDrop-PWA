@@ -62,6 +62,14 @@ linkText | String |The Text inside the Link Component
 backgroundColor | Hexadecimal Color Code | The background color of the Link Component
 linkUrl | String URL | The URL of the Link Component
 
+### Message Box Component
+This is a dynamic text output element which can be used as a standard text output or message box.
+
+Property | Input Type | Meaning
+-------- | ---------- | -------
+messageVariable | Variable Name | The variable from which the message box output value will be taken.
+backgroundColor | Hexadecimal Color Code | The background color of the Message Box Component
+
 
 
 
