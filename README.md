@@ -12,7 +12,7 @@ Width = (1920/1024) x 200 = 375 px
 
 Height = (1080/576) x 100 = 187.5 px
 
-All UI elements has 4 Positional Properties which determines the X,Y coordinates and the widht and height.
+All UI elements has 4 Positional Properties which determines the X,Y coordinates and the width and height.
 
 Property | Input Type | Meaning
 -------- | ---------- | -------
@@ -22,7 +22,7 @@ Width | Number | Number of Pixels of element Width
 Height | Number | Number of Pixels of element Height
 
 ### Button Component
-This is a clickable button element which can perform some logical actions when clicked. It has the following properties apart from positional properties
+This is a clickable button element which can perform some logical actions when clicked.
 
 Property | Input Type | Meaning
 -------- | ---------- | -------
@@ -31,7 +31,7 @@ backgroundColor | Hexadecimal Color Code | The color of the Button Component
 clickEvent | WorkFlow Name | The WorkFlow which will be executed on click event of the Button Component
 
 ### Text Component
-This is a Text message element which can be used as labels or static text areas. It has the following properties apart from positional properties
+This is a Text message element which can be used as labels or static text areas.
 
 Property | Input Type | Meaning
 -------- | ---------- | -------
@@ -39,18 +39,30 @@ textValue | String |The Text inside the Text Component
 backgroundColor | Hexadecimal Color Code | The background color of the Text Component
 
 ### TextInput Component
-This is a Text input element which can be used as a standard text input. It has the following properties apart from positional properties
+This is a Text input element which can be used as a standard text input.
 
 Property | Input Type | Meaning
 -------- | ---------- | -------
 fieldVariable | Variable Name |The variable in which the TextInput Component will store it's value on change
 
 ### Image Component
-This is a Image element which can be used as static Image. It has the following properties apart from positional properties
+This is a Image element which can be used as static Image.
 
 Property | Input Type | Meaning
 -------- | ---------- | -------
-imgSrcValue | String URL|The URL of the Image Component  
+imgSrcValue | String URL |The URL of the Image Component  
 backgroundColor | Hexadecimal Color Code | The background color of the Image Component
+
+### Link Component
+This is a anchor tag element which can be used as hyperlinks.
+
+Property | Input Type | Meaning
+-------- | ---------- | -------
+linkText | String |The Text inside the Link Component 
+backgroundColor | Hexadecimal Color Code | The background color of the Link Component
+linkUrl | String URL | The URL of the Link Component
+
+
+
 
 
