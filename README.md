@@ -98,12 +98,22 @@ There are different programming blocks available which can be dragged and droppe
 - assignToVariableFunction: This is used to assign one variable to another.
 - printFunction: Prints the variable value in the window console. (Can be used for debugging)
 
-
 ### LogicBlocks
-### LogicalFunctions
-### LoopBlocks
-### MathBlocks
+- executionBlock: NOT YET READY. DEVELOPMENT IN PROGRESS. 
+- ifElseBlock: This is used for creating a conditional if else statement. It has 3 parts. The condition part is where it takes a logical function and evaluates the function to get a boolean output. Based on the expression evaluation, it will execute the if or else block. The if or else blocks can embed other series of logical steps which would be executed.
 
+### LogicalFunctions
+- greaterThan: Evaluates greater than between two variables.
+- lessThan: Evaluates less than between two variables.
+- greaterThanEqual: Evaluates greater than equal between two variables.
+- lessThanEqual: Evaluates less than equal between two variables.
+- equalTo: Evaluates equal to between two variables.
+
+### LoopBlocks
+-forLoop: Executes a for loop from the start variable to the stop variable. In the loop body, it embeds a series of logical steps which would be executed.
+
+### MathBlocks
+-evaluateMath: Takes a math expression in string format from a variable, evaluates the expression and assigns the output to a variable.
 
 
 
